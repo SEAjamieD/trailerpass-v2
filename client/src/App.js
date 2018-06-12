@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import Home from './components/home/Home';
+import Search from './components/search/Search';
 import Detail from './components/detail/Detail';
 import PoweredBy from './common/poweredBy/PoweredBy';
 import './App.css';
@@ -19,6 +20,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/search" component={Search} />
             <Route exact path="/movie/:id" component={Detail} />
           </Switch>
         </BrowserRouter>

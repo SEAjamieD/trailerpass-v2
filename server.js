@@ -37,7 +37,26 @@ app.get('/api/movie/:id', (req, res) => {
   .then((data) => {
     res.json(data);
   })
+})
 
+app.get('/api/search/:query', (req, res) => {
+//
+fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${req.params.query}&page=1&include_adult=false&region=en-US`)
+.then(response => {
+  return response.json()
+  .then(json => {
+    return response.ok ? json : Promise.reject(json);
+  });
+})
+.then((data) => {
+  console.log('success');
+  console.log(data);
+  res.json(data)
+})
+.catch((error) => {
+  console.log(error)
+})
+  //
 })
 
 // The "catchall" handler: for any request that doesn't
