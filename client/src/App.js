@@ -1,35 +1,19 @@
 import React, { Component } from 'react';
+import Home from './components/home/Home';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      test: []
-    }
-  }
-
-  componentDidMount() {
-    fetch('/api/popular-movies')
-      .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-        // this.setState({test: data.results})
-      })
-  }
 
   render() {
-    if (!this.state.test) {
-      return (
-        <div className="App">
-          waiting...
-        </div>
-      );
-    }
 
     return (
-      <div className="App">
-          data in the console.
+      <div className="app">
+        <div className="header border full-flex">
+          <h1>trailerPass</h1>
+        </div>
+
+        <Home />
+
       </div>
     );
   }
