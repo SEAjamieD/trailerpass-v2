@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import Loader from '../../common/loader/Loader';
+import Eyeglass from './eyeglass.svg';
 import './home.css';
 
 
@@ -79,6 +80,12 @@ class Home extends React.Component {
             </div>
           ))}
         </div>
+
+        <div className="search__button full-flex"
+            onClick={() => history.push(`/search`)}>
+            <img src={Eyeglass} alt="search icon" className="search__eyeglass" />
+        </div>
+
 
       </div>
     );
