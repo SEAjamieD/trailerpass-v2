@@ -1,0 +1,29 @@
+.details__container {
+
+}
+
+.youtube-container {
+
+}
+
+.details__lower-info {
+  width: 90%;
+  margin: 0 auto;
+  min-height: 30vh;
+  color: white;
+}
+
+.details__title {
+  font-size: 2rem;
+  color: white;
+  text-align: left;
+  padding: 12px 0;
+}
+
+.details__release-date {
+  padding: 5px 0 10px;
+}
+
+.details__overview {
+  line-height: 1.2;
+}

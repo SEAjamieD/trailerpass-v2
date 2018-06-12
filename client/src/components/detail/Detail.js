@@ -1,5 +1,6 @@
 import React from 'react';
 import YouTube from 'react-youtube';
+import Loader from '../../common/loader/Loader';
 import './detail.css';
 
 class Details extends React.Component {
@@ -12,23 +13,35 @@ class Details extends React.Component {
   }
 
   componentDidMount() {
-    // this.fetchMovieDetails();
+    this.fetchMovieDetails();
   }
 
-  fetchMoviesDetails = () => {
+  fetchMovieDetails = () => {
     const {match} = this.props;
     this.setState({loading: true})
     fetch(`/api/movie/${match.params.id}`)
       .then(res => res.json())
       .then((data) => {
         console.log(data);
-
+        if (data.videos.results[0]) {
+          this.setState({
+            movie: data,
+            video: data.videos.results[0].key,
+            loading: false
+          })
+        } else {
+          this.setState({
+            movie: data,
+            video: null,
+            loading: false
+          })
+        }
       })
   }
 
 
   render() {
-    const {movie, video} = this.state;
+    const {loading, movie, video} = this.state;
 
     const opts = {
           height: '300px',
@@ -37,6 +50,12 @@ class Details extends React.Component {
             autoplay: 0
           }
         };
+
+    if (loading === true) {
+      return (
+        <Loader />
+      );
+    }
 
     return (
       <div className="details__container">

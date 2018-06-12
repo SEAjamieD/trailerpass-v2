@@ -19,7 +19,6 @@ app.get('/api/popular-movies', (req, res) => {
       });
     })
     .then((data) => {
-      console.log('success');
       res.json(data);
     })
     .catch((error) => {
@@ -36,8 +35,6 @@ app.get('/api/movie/:id', (req, res) => {
     });
   })
   .then((data) => {
-    console.log('detail success');
-    console.log(data);
     res.json(data);
   })
 

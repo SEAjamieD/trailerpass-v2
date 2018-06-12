@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import Loader from '../../common/loader/Loader';
 import './home.css';
 
@@ -43,6 +44,7 @@ class Home extends React.Component {
 
   render() {
     const {loading, popularMovies, randomMovie, randomMovieBackDrop, moreMovies} = this.state;
+    const {history} = this.props;
 
     if (loading === true) {
       return (
@@ -62,7 +64,7 @@ class Home extends React.Component {
         <h2 className="list__section-title">Popular Movies</h2>
           <div className="list__slider-container">
             {popularMovies.map((movie) => (
-              <div key={movie.id} className="list__image-poster">
+              <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
                   <img src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
               </div>
             ))}
@@ -72,7 +74,7 @@ class Home extends React.Component {
         <h2 className="list__section-title">Now Playing</h2>
         <div className="list__slider-container">
           {moreMovies.map((movie) => (
-            <div key={movie.id} className="list__image-poster">
+            <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
                 <img src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
             </div>
           ))}
@@ -84,4 +86,4 @@ class Home extends React.Component {
 
 }
 
-export default Home;
+export default withRouter(Home);
