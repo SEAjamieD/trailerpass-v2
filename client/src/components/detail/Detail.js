@@ -1,5 +1,6 @@
 import React from 'react';
 import YouTube from 'react-youtube';
+import Stars from '../stars/Stars';
 import Loader from '../../common/loader/Loader';
 import './detail.css';
 
@@ -69,6 +70,7 @@ class Details extends React.Component {
         <div className="details__lower-info">
           <h1 className="details__title">{movie.original_title}</h1>
           <p className="details__release-date">Released: {movie.release_date}</p>
+          <Stars rating={movie.vote_average}/>
           <p className="details__overview">{movie.overview}</p>
         </div>
       </div>
