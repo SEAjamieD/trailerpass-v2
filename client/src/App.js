@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Home from './components/home/Home';
+import Detail from './components/detail/Detail';
+import PoweredBy from './common/poweredBy/PoweredBy';
 import './App.css';
 
 class App extends Component {
@@ -12,8 +14,9 @@ class App extends Component {
           <h1>trailerPass</h1>
         </div>
 
-        <Home />
+        <Detail />
 
+        <PoweredBy />
       </div>
     );
   }

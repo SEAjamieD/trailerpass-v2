@@ -1,0 +1,9 @@
+.powered__by-container {
+  margin: 20px 0;
+}
+
+.powered__by-container img {
+  height: 6vh;
+  max-height: 60px;
+  min-height: 40px;
+}
