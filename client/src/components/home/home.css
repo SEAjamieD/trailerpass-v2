@@ -1,3 +1,49 @@
 .hero-container {
-  min-height: 40vh;
+  position: relative;
+}
+
+.list__random-title {
+  position: absolute;
+  width: 40%;
+  top: 20px;
+  left: 20px;
+  color: white;
+  opacity: .8;
+  font-size: 1.7em;
+  z-index: 200;
+}
+
+.list__random-image {
+  width: 100%;
+  opacity: .5;
+  -webkit-filter: grayscale(60%);
+  filter: grayscale(60%);
+}
+
+.list__slider-container {
+  padding-left: 10px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.list__image-poster {
+  width: 110px;
+  min-width: 110px;
+  margin-right: 10px;
+}
+
+.list__image-poster img {
+  object-fit: contain;
+  max-width: 100%;
+  box-shadow: 3px 5px 3px 0 rgba(51,51,51, 0.5);
+}
+
+.list__section-title {
+  color: white;
+  opacity: .6;
+  font-size: 1.3em;
+  padding: 10px 0 5px 10px;
 }

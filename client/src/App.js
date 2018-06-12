@@ -8,7 +8,7 @@ class App extends Component {
 
     return (
       <div className="app">
-        <div className="header border full-flex">
+        <div className="header full-flex">
           <h1>trailerPass</h1>
         </div>
 
