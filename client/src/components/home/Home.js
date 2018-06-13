@@ -1,8 +1,18 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+import { fadeIn } from 'react-animations';
 import Loader from '../../common/loader/Loader';
 import Eyeglass from './eyeglass.svg';
 import './home.css';
+import './home-transitions.css';
+
+
+const fadeInAnimation = keyframes`${fadeIn}`;
+
+const HomeDiv = styled.div`
+  animation: .5s ${fadeInAnimation};
+  `;
 
 
 class Home extends React.Component {
@@ -13,7 +23,7 @@ class Home extends React.Component {
       popularMovies: [],
       moreMovies: [],
       randomMovie: [],
-      randomMovieBackDrop: ''
+      randomMovieBackDrop: '',
     }
   }
 
@@ -37,14 +47,14 @@ class Home extends React.Component {
           moreMovies,
           randomMovie,
           randomMovieBackDrop,
-          loading: false
+          loading: false,
         })
       })
   }
 
 
   render() {
-    const {loading, popularMovies, randomMovie, randomMovieBackDrop, moreMovies} = this.state;
+    const { loading, popularMovies, randomMovie, randomMovieBackDrop, moreMovies} = this.state;
     const {history} = this.props;
 
     if (loading === true) {
@@ -54,7 +64,7 @@ class Home extends React.Component {
     }
 
     return (
-      <div className="home">
+      <HomeDiv>
         <div className="hero-container">
           <h2 className="list__random-title">{randomMovie.title}</h2>
           <img className="list__random-image" src={randomMovieBackDrop} alt="movie backdrop"/>
@@ -85,9 +95,7 @@ class Home extends React.Component {
             onClick={() => history.push(`/search`)}>
             <img src={Eyeglass} alt="search icon" className="search__eyeglass" />
         </div>
-
-
-      </div>
+      </HomeDiv>
     );
   }
 

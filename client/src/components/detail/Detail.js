@@ -1,8 +1,16 @@
 import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { fadeIn } from 'react-animations';
 import YouTube from 'react-youtube';
 import Stars from '../stars/Stars';
 import Loader from '../../common/loader/Loader';
 import './detail.css';
+
+const fadeInAnimation = keyframes`${fadeIn}`;
+
+const DetailsDiv = styled.div`
+  animation: .5s ${fadeInAnimation};
+  `;
 
 class Details extends React.Component {
   constructor() {
@@ -59,8 +67,7 @@ class Details extends React.Component {
     }
 
     return (
-      <div className="details__container">
-
+      <DetailsDiv>
         <div className="youtube-container">
           <YouTube
             opts={opts}
@@ -73,7 +80,7 @@ class Details extends React.Component {
           <Stars rating={movie.vote_average}/>
           <p className="details__overview">{movie.overview}</p>
         </div>
-      </div>
+      </DetailsDiv>
     );
   }
 }
