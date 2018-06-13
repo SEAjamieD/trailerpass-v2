@@ -1,6 +1,15 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+import { fadeIn } from 'react-animations';
+import BackButton from '../../common/backButton/BackButton';
 import './search.css';
+
+const fadeInAnimation = keyframes`${fadeIn}`;
+
+const SearchDiv = styled.div`
+  animation: .5s ${fadeInAnimation};
+  `;
 
 class Search extends React.Component {
   constructor(props) {
@@ -59,7 +68,10 @@ class Search extends React.Component {
     const {history} = this.props;
 
     return(
-      <div className="search__container">
+      <SearchDiv>
+
+        <BackButton />
+
         <div className="search__form-container">
           <form
             onSubmit={this.handleSubmit}
@@ -89,7 +101,7 @@ class Search extends React.Component {
           ))}
         </div>
 
-      </div>
+      </SearchDiv>
     );
   }
 }

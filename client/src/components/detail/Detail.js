@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 import YouTube from 'react-youtube';
 import Stars from '../stars/Stars';
+import BackButton from '../../common/backButton/BackButton';
 import Loader from '../../common/loader/Loader';
 import PoweredBy from '../../common/poweredBy/PoweredBy';
 import './detail.css';
@@ -69,6 +70,8 @@ class Details extends React.Component {
 
     return (
       <DetailsDiv>
+        <BackButton />
+
         <div className="youtube-container">
           <YouTube
             opts={opts}
