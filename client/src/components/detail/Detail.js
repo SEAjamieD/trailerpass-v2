@@ -69,9 +69,11 @@ class Details extends React.Component {
     }
 
     return (
-      <DetailsDiv>
-        <BackButton />
+      <div>
 
+      <BackButton />
+
+        <DetailsDiv>
         <div className="youtube-container">
           <YouTube
             opts={opts}
@@ -86,7 +88,10 @@ class Details extends React.Component {
         </div>
 
         <PoweredBy />
+        
       </DetailsDiv>
+
+      </div>
     );
   }
 }
