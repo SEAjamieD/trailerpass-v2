@@ -3,9 +3,9 @@ import {withRouter} from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 import Loader from '../../common/loader/Loader';
+import PoweredBy from '../../common/poweredBy/PoweredBy';
 import Eyeglass from './eyeglass.svg';
 import './home.css';
-import './home-transitions.css';
 
 
 const fadeInAnimation = keyframes`${fadeIn}`;
@@ -95,6 +95,9 @@ class Home extends React.Component {
             onClick={() => history.push(`/search`)}>
             <img src={Eyeglass} alt="search icon" className="search__eyeglass" />
         </div>
+
+        <PoweredBy />
+
       </HomeDiv>
     );
   }

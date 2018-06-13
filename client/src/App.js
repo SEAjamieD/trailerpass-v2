@@ -4,7 +4,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
 import Detail from './components/detail/Detail';
-import PoweredBy from './common/poweredBy/PoweredBy';
 import './App.css';
 
 class App extends Component {
@@ -25,7 +24,6 @@ class App extends Component {
           </Switch>
         </BrowserRouter>
 
-        <PoweredBy />
       </div>
     );
   }
