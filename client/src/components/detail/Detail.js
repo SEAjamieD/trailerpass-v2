@@ -11,9 +11,14 @@ import './detail.css';
 const fadeInAnimation = keyframes`${fadeIn}`;
 
 const DetailsDiv = styled.div`
-  padding-top: 60px;
   animation: .5s ${fadeInAnimation};
   `;
+
+const YoutubeDiv = styled.div`
+  padding-top: 60px;
+  min-height: 35vh;
+  animation: 750ms ${fadeInAnimation};
+`;
 
 class Details extends React.Component {
   constructor() {
@@ -74,13 +79,13 @@ class Details extends React.Component {
 
       <BackButton />
 
-        <DetailsDiv>
-        <div className="youtube-container">
+        <YoutubeDiv>
           <YouTube
             opts={opts}
             videoId={video}
             />
-        </div>
+        </YoutubeDiv>
+      <DetailsDiv>
         <div className="details__lower-info">
           <h1 className="details__title">{movie.original_title}</h1>
           <p className="details__release-date">Released: {movie.release_date}</p>
