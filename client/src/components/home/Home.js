@@ -66,7 +66,7 @@ class Home extends React.Component {
 
     return (
       <HomeDiv>
-        <div className="hero-container">
+        <div className="hero-container" onClick={() => history.push(`/movie/${randomMovie.id}`)}>
           <h2 className="list__random-title">{randomMovie.title}</h2>
           <img className="list__random-image" src={randomMovieBackDrop} alt="movie backdrop"/>
         </div>
