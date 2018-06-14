@@ -1,5 +1,6 @@
 .hero-container {
   position: relative;
+  min-height: 31vh;
 }
 
 .list__random-title {
@@ -8,14 +9,14 @@
   top: 20px;
   left: 20px;
   color: white;
-  opacity: .8;
+  opacity: .9;
   font-size: 1.7em;
   z-index: 200;
 }
 
 .list__random-image {
   width: 100%;
-  opacity: .5;
+  opacity: .7;
   -webkit-filter: grayscale(60%);
   filter: grayscale(60%);
 }

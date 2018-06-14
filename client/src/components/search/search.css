@@ -4,14 +4,18 @@
 
 .search__form-container {
   position: fixed;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 850px;
   background: black;
 }
 
 .search__input {
+  box-sizing: border-box;
   font-size: 1.7em;
   width: 100%;
+  max-width: 850px;
   border: none;
   border-radius: 0;
   outline: 0;

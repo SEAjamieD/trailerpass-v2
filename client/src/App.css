@@ -1,4 +1,5 @@
 .app {
+  position: relative;
   width: 100vw;
   margin: 0 auto;
   max-width: 850px;
@@ -8,6 +9,7 @@
   box-sizing:border-box;
   position: fixed;
   width: 100%;
+  max-width: 850px;
   height: 60px;
   font-size: 36px;
   background: black;

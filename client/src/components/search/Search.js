@@ -69,9 +69,9 @@ class Search extends React.Component {
     const {history} = this.props;
 
     return(
+      <div>
+      <BackButton />
       <SearchDiv>
-
-        <BackButton />
 
         <div className="search__form-container">
           <form
@@ -103,6 +103,8 @@ class Search extends React.Component {
         </div>
 
       </SearchDiv>
+
+      </div>
     );
   }
 }
