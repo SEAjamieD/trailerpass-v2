@@ -11,12 +11,12 @@ import './detail.css';
 const fadeInAnimation = keyframes`${fadeIn}`;
 
 const DetailsDiv = styled.div`
+  margin-top: 36vh;
   animation: .5s ${fadeInAnimation};
   `;
 
 const YoutubeDiv = styled.div`
   padding-top: 60px;
-  min-height: 35vh;
   animation: 750ms ${fadeInAnimation};
 `;
 
@@ -61,7 +61,7 @@ class Details extends React.Component {
     const {loading, movie, video} = this.state;
 
     const opts = {
-          height: '240px',
+          height: '100%',
           width: '100%',
           playerVars: { // https://developers.google.com/youtube/player_parameters
             autoplay: 0
@@ -81,6 +81,7 @@ class Details extends React.Component {
 
         <YoutubeDiv>
           <YouTube
+            id="player"
             opts={opts}
             videoId={video}
             />
