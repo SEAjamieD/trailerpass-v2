@@ -11,6 +11,7 @@ import './detail.css';
 const fadeInAnimation = keyframes`${fadeIn}`;
 
 const DetailsDiv = styled.div`
+  padding-top: 60px;
   animation: .5s ${fadeInAnimation};
   `;
 

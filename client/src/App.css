@@ -5,7 +5,12 @@
 }
 
 .header {
+  box-sizing:border-box;
+  position: fixed;
+  width: 100%;
   height: 60px;
   font-size: 36px;
+  background: black;
   color: red;
+  z-index: 500;
 }

@@ -11,6 +11,7 @@ import './home.css';
 const fadeInAnimation = keyframes`${fadeIn}`;
 
 const HomeDiv = styled.div`
+  padding-top: 60px;
   animation: .5s ${fadeInAnimation};
   `;
 
