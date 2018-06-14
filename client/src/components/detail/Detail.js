@@ -55,7 +55,7 @@ class Details extends React.Component {
     const {loading, movie, video} = this.state;
 
     const opts = {
-          height: '300px',
+          height: '240px',
           width: '100%',
           playerVars: { // https://developers.google.com/youtube/player_parameters
             autoplay: 0
@@ -88,7 +88,7 @@ class Details extends React.Component {
         </div>
 
         <PoweredBy />
-        
+
       </DetailsDiv>
 
       </div>
