@@ -1,7 +1,24 @@
 import React from 'react';
+import styled, { keyframes } from 'styled-components';
 import Star from './Star';
 import StarOutline from './StarOutline';
 import './stars.css';
+
+const revealAnimation = keyframes`
+  from {width: 100%;}
+  to {width: 0%;}
+`;
+
+const RevealDiv = styled.div`
+  position: absolute;
+  height: 50%;
+  width: 0%;
+  right: 30%;
+  background: black;
+  -webkit-transform: translate3d(0,0,0);
+  z-index: 10;
+  animation: ${revealAnimation} 2.5s ease-out;
+`;
 
 class Stars extends React.Component {
 
@@ -19,9 +36,10 @@ class Stars extends React.Component {
 
     return (
       <div className="stars__container">
-        <div className="stars__row">
-        {stars}
-        </div>
+          <div className="stars__row">
+            <RevealDiv></RevealDiv>
+          {stars}
+          </div>
       </div>
     );
   }
