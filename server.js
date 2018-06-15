@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
@@ -7,13 +8,11 @@ const app = express();
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-const API_KEY = "0e2fdf4b7171df90e3dbc0718f45191b";
-
 // Put all API endpoints under here
 
 //home screen movies list route
 app.get('/api/popular-movies', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&region=us&page=1`)
+  fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&page=1`)
     .then(response => {
       return response.json()
     .then(json => {
@@ -30,7 +29,7 @@ app.get('/api/popular-movies', (req, res) => {
 
 // movie details route
 app.get('/api/movie/:id', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${API_KEY}&append_to_response=videos`)
+  fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.OPENDB_KEY}&append_to_response=videos`)
   .then(response => {
     return response.json()
   .then(json => {
@@ -44,7 +43,7 @@ app.get('/api/movie/:id', (req, res) => {
 
 //search route
 app.get('/api/search/:query', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${req.params.query}&page=1&include_adult=false&region=en-US`)
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&query=${req.params.query}&page=1&include_adult=false&region=en-US`)
   .then(response => {
     return response.json()
     .then(json => {
