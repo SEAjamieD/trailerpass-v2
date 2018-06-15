@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
-import YouTube from 'react-youtube';
 import Stars from '../stars/Stars';
 import BackButton from '../../common/backButton/BackButton';
 import Loader from '../../common/loader/Loader';
@@ -11,21 +10,19 @@ import './detail.css';
 const fadeInAnimation = keyframes`${fadeIn}`;
 
 const DetailsDiv = styled.div`
-  margin-top: 36vh;
   animation: .5s ${fadeInAnimation};
   `;
 
-const YoutubeDiv = styled.div`
-  padding-top: 60px;
-  animation: 750ms ${fadeInAnimation};
-`;
+// const YoutubeDiv = styled.div`
+//   animation: 750ms ${fadeInAnimation};
+// `;
 
 class Details extends React.Component {
   constructor() {
     super();
     this.state = {
       movie: [],
-      video: null
+      youTubeVid: ''
     }
   }
 
@@ -43,7 +40,7 @@ class Details extends React.Component {
         if (data.videos.results[0]) {
           this.setState({
             movie: data,
-            video: data.videos.results[0].key,
+            youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0`,
             loading: false
           })
         } else {
@@ -56,17 +53,8 @@ class Details extends React.Component {
       })
   }
 
-
   render() {
-    const {loading, movie, video} = this.state;
-
-    const opts = {
-          height: '100%',
-          width: '100%',
-          playerVars: { // https://developers.google.com/youtube/player_parameters
-            autoplay: 0
-          }
-        };
+    const {loading, movie, youTubeVid} = this.state;
 
     if (loading === true) {
       return (
@@ -79,13 +67,10 @@ class Details extends React.Component {
 
       <BackButton />
 
-        <YoutubeDiv>
-          <YouTube
-            id="player"
-            opts={opts}
-            videoId={video}
-            />
-        </YoutubeDiv>
+      <div className="youtube-wrapper">
+        <iframe title={movie.original_title} className="youtube-player" width="500" height="294" src={youTubeVid} frameBorder="0"></iframe>
+      </div>
+
       <DetailsDiv>
         <div className="details__lower-info">
           <h1 className="details__title">{movie.original_title}</h1>

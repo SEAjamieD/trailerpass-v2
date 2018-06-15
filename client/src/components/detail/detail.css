@@ -1,11 +1,20 @@
 
-#player {
+.youtube-wrapper {
+  display: grid;
+  position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+  margin-bottom: 60px;
+	height: 0;
+}
+
+.youtube-player {
   position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 31vh;
-  width: 100vw;
+  grid-area: 1/1;
+  padding-top: 60px;
+	margin-top: 0;
+	margin-left: 0;
+	width: 100vw;
+	height: calc(100vw/1.77)
 }
 
 .details__container {
