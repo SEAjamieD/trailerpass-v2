@@ -14,3 +14,13 @@ body {
 .border {
   border: 1px solid pink;
 }
+
+.text-shadow {
+  text-shadow: 0 4px 6px rgba(255,255,255,.31),
+              0 1px 3px rgba(255,255,255,.18);
+}
+
+.text-shadow-dark {
+  text-shadow: 0 4px 6px rgba(50,50,93,.11),
+               0 1px 3px rgba(0,0,0,.08);
+}

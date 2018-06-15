@@ -67,13 +67,13 @@ class Home extends React.Component {
     return (
       <HomeDiv>
         <div className="hero-container" onClick={() => history.push(`/movie/${randomMovie.id}`)}>
-          <h2 className="list__random-title">{randomMovie.title}</h2>
+          <h2 className="list__random-title text-shadow-dark">{randomMovie.title}</h2>
           <img className="list__random-image" src={randomMovieBackDrop} alt="movie backdrop"/>
         </div>
 
 
         <div className="movie-list-popular">
-        <h2 className="list__section-title">Popular Movies</h2>
+        <h2 className="list__section-title text-shadow">Popular Movies</h2>
           <div className="list__slider-container">
             {popularMovies.map((movie) => (
               <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
@@ -83,7 +83,7 @@ class Home extends React.Component {
           </div>
         </div>
 
-        <h2 className="list__section-title">Now Playing</h2>
+        <h2 className="list__section-title text-shadow">Now Playing</h2>
         <div className="list__slider-container">
           {moreMovies.map((movie) => (
             <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
