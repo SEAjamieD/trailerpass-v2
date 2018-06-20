@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
+import Youtube from '../youtube/Youtube';
 import Stars from '../stars/Stars';
 import BackButton from '../../common/backButton/BackButton';
 import Loader from '../../common/loader/Loader';
@@ -64,9 +65,9 @@ class Details extends React.Component {
 
       <BackButton />
 
-      <div className="youtube-wrapper">
-        <iframe title={movie.original_title} className="youtube-player" width="500" height="294" src={youTubeVid} frameBorder="0"></iframe>
-      </div>
+      <Youtube
+        youTubeVid={youTubeVid}
+        movieTitle={movie.original_title} />
 
       <DetailsDiv>
         <div className="details__lower-info">
