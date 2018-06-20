@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { fadeInLeft } from 'react-animations';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import './backbutton.css';
 
 const fadeInAnimation = keyframes`${fadeInLeft}`;
@@ -20,14 +20,15 @@ const BackArrowDiv = styled.div`
   animation: .5s ${fadeInAnimation};
   `;
 
-const Backbutton = () => {
-  return (
-      <BackArrowDiv>
-        <Link to="/">
-          <div className="arrow left-arrow"></div>
-        </Link>
+class Backbutton extends React.Component {
+  render() {
+    const { history } = this.props;
+    return (
+      <BackArrowDiv onClick={ () => history.goBack() }>
+        <div className="arrow left-arrow"></div>
       </BackArrowDiv>
-  );
+    );
+  }
 }
 
-export default Backbutton;
+export default withRouter(Backbutton);

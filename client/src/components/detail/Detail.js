@@ -13,9 +13,6 @@ const DetailsDiv = styled.div`
   animation: .5s ${fadeInAnimation};
   `;
 
-// const YoutubeDiv = styled.div`
-//   animation: 750ms ${fadeInAnimation};
-// `;
 
 class Details extends React.Component {
   constructor() {
