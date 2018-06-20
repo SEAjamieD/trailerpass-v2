@@ -6,7 +6,9 @@
 	margin-top: 0;
 	margin-left: 0;
 	width: 100vw;
-	height: calc(100vw/1.77)
+  max-width: 850px;
+	height: calc(100vw/1.77);
+  max-height: calc(850px/1.77);
 }
 
 .details__container {

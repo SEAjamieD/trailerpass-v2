@@ -7,7 +7,7 @@ const fadeInAnimation = keyframes`${fadeIn}`;
 const YoutubeWrapper = styled.div`
   display: grid;
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
   margin-bottom: 60px;
   height: 0;
   animation: .7s ${fadeInAnimation};
