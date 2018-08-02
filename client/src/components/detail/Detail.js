@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import anime from 'animejs';
 import { fadeIn } from 'react-animations';
 import Youtube from '../youtube/Youtube';
 import Stars from '../stars/Stars';
@@ -56,6 +57,7 @@ class Details extends React.Component {
   copyUrl = () => {
     this.urlInput.select();
     document.execCommand('copy');
+
   }
 
   render() {
@@ -83,12 +85,14 @@ class Details extends React.Component {
           <Stars rating={movie.vote_average}/>
           <p className="details__overview">{movie.overview}</p>
 
-          <div className="url-copy full-flex" onClick={this.copyUrl}>
-            <input id="page-url"
-            ref={el => this.urlInput = el}
-            defaultValue={this.state.pageUrl}
-            />
-            <p>Share Url</p>
+          <div className="url-copy-container" onClick={this.copyUrl}>
+            <div className="url-copy-button full-flex">
+              <input id="page-url"
+              ref={el => this.urlInput = el}
+              defaultValue={this.state.pageUrl}
+              />
+              <p>Share Url</p>
+            </div>
           </div>
         </div>
 

@@ -38,14 +38,22 @@
   line-height: 1.2;
 }
 
-.url-copy {
+.url-copy-container {
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-end; */
+}
+
+.url-copy-button {
   border: 1px solid red;
-  border-radius: 5px;
   height: 50px;
   width: 100px;
-  margin-top: 2em;
+  max-width: 200px;
+  margin-top: 3em;
   margin-bottom: 2em;
   color: white;
+  box-shadow: 0 4px 6px rgba(50,50,93,.2),
+              0 1px 3px rgba(255,0,0,.5);
 }
 
 #page-url {
