@@ -57,7 +57,7 @@ class Details extends React.Component {
   copyUrl = () => {
     this.urlInput.select();
     document.execCommand('copy');
-
+    this.animateCopiedTrue()
   }
 
   render() {
@@ -85,13 +85,22 @@ class Details extends React.Component {
           <Stars rating={movie.vote_average}/>
           <p className="details__overview">{movie.overview}</p>
 
-          <div className="url-copy-container" onClick={this.copyUrl}>
-            <div className="url-copy-button full-flex">
+          <div className="url-copy-container">
+            <div className="url-copy-button full-flex"
+              ref={el => this.copyButton = el}
+              onClick={this.copyUrl}
+              >
               <input id="page-url"
               ref={el => this.urlInput = el}
               defaultValue={this.state.pageUrl}
               />
-              <p>Share Url</p>
+              <p
+              ref={el => this.copyButtonText = el}
+              >Copy Url</p>
+              <p
+              className="copy-checkmark"
+              ref={el => this.checkMark = el}
+              >&#x2713;</p>
             </div>
           </div>
         </div>
@@ -103,6 +112,28 @@ class Details extends React.Component {
 
       </div>
     );
+  }
+
+
+  animateCopiedTrue() {
+    const { copyButton, copyButtonText, checkMark } = this;
+    anime({
+      targets: copyButtonText,
+      opacity: [1,0],
+      duration: 50
+    });
+    anime({
+      targets: copyButton,
+      width: "50px",
+      background: "#FF0000",
+      borderRadius: "50%",
+      duration: 1100
+    })
+    anime({
+      targets: checkMark,
+      opacity: [0,1],
+      duragion: 1100
+    })
   }
 }
 

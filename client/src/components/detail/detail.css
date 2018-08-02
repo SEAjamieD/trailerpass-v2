@@ -45,6 +45,7 @@
 }
 
 .url-copy-button {
+  position: relative;
   border: 1px solid red;
   height: 50px;
   width: 100px;
@@ -54,6 +55,12 @@
   color: white;
   box-shadow: 0 4px 6px rgba(50,50,93,.2),
               0 1px 3px rgba(255,0,0,.5);
+}
+
+.copy-checkmark {
+  opacity: 0;
+  position: absolute;
+  font-size: 1.6em;
 }
 
 #page-url {
