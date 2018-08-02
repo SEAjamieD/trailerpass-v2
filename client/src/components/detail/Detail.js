@@ -20,7 +20,8 @@ class Details extends React.Component {
     super();
     this.state = {
       movie: [],
-      youTubeVid: ''
+      youTubeVid: '',
+      pageUrl: '',
     }
   }
 
@@ -39,6 +40,7 @@ class Details extends React.Component {
           this.setState({
             movie: data,
             youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0`,
+            pageUrl: window.location.href,
             loading: false
           })
         } else {
@@ -49,6 +51,11 @@ class Details extends React.Component {
           })
         }
       })
+  }
+
+  copyUrl = () => {
+    this.urlInput.select();
+    document.execCommand('copy');
   }
 
   render() {
@@ -75,7 +82,16 @@ class Details extends React.Component {
           <p className="details__release-date">Released: {movie.release_date}</p>
           <Stars rating={movie.vote_average}/>
           <p className="details__overview">{movie.overview}</p>
+
+          <div className="url-copy full-flex" onClick={this.copyUrl}>
+            <input id="page-url"
+            ref={el => this.urlInput = el}
+            defaultValue={this.state.pageUrl}
+            />
+            <p>Share Url</p>
+          </div>
         </div>
+
 
         <PoweredBy />
 

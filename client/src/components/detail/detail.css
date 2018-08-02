@@ -16,6 +16,7 @@
 }
 
 .details__lower-info {
+  position: relative;
   width: 90%;
   margin: 0 auto;
   min-height: 30vh;
@@ -35,4 +36,21 @@
 
 .details__overview {
   line-height: 1.2;
+}
+
+.url-copy {
+  border: 1px solid red;
+  border-radius: 5px;
+  height: 50px;
+  width: 100px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  color: white;
+}
+
+#page-url {
+  /* maybe make this a temp div in the future */
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
