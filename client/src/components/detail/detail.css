@@ -65,6 +65,7 @@
 
 #page-url {
   /* maybe make this a temp div in the future */
+  font-size: 20px !important;
   position: absolute;
   top: -9999px;
   left: -9999px;

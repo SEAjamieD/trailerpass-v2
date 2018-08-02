@@ -57,6 +57,7 @@ class Details extends React.Component {
   copyUrl = () => {
     this.urlInput.select();
     document.execCommand('copy');
+    this.urlInput.blur();
     this.animateCopiedTrue()
   }
 
@@ -92,7 +93,7 @@ class Details extends React.Component {
               >
               <input id="page-url"
               ref={el => this.urlInput = el}
-              defaultValue={this.state.pageUrl}
+              value={this.state.pageUrl}
               />
               <p
               ref={el => this.copyButtonText = el}
