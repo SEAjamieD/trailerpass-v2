@@ -70,3 +70,27 @@
   top: -9999px;
   left: -9999px;
 }
+
+.profile-container {
+  height: 100%;
+}
+
+.profile-container img {
+  height: 100px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1em;
+}
+
+.actor-name {
+  color: red;
+  font-size: 1.4em;
+}
+
+.actor-character {
+  margin-top: .5em;
+}

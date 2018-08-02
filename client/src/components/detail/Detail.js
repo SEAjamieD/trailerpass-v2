@@ -16,6 +16,18 @@ const DetailsDiv = styled.div`
   animation: .5s ${fadeInAnimation};
   `;
 
+const CastDetails = styled.div`
+  display: flex;
+  overflow: hidden;
+  height: 100px;
+  width: 100%;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  background: black;
+  box-shadow: 0 4px 6px rgba(51,51,51,.3),
+              0 1px 3px rgba(51,51,51, .5);
+`;
+
 
 class Details extends React.Component {
   constructor() {
@@ -24,6 +36,7 @@ class Details extends React.Component {
       movie: [],
       youTubeVid: '',
       pageUrl: '',
+      cast: []
     }
   }
 
@@ -39,10 +52,14 @@ class Details extends React.Component {
       .then((data) => {
         console.log(data);
         if (data.videos.results[0]) {
+          let cast = data.credits.cast.slice(0,5);
+          console.log(cast);
+
           this.setState({
             movie: data,
             youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0`,
             pageUrl: window.location.href,
+            cast: cast,
             loading: false
           })
         } else {
@@ -60,7 +77,7 @@ class Details extends React.Component {
   }
 
   render() {
-    const {loading, movie, youTubeVid} = this.state;
+    const {loading, movie, youTubeVid, cast} = this.state;
 
     if (loading === true) {
       return (
@@ -103,6 +120,23 @@ class Details extends React.Component {
               </div>
             </CopyToClipboard>
           </div>
+
+          <div>
+            {cast.map((actor) => (
+              <CastDetails key={actor.id}>
+                <div className="profile-container">
+                  <img src={'http://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
+                </div>
+                <div className="profile-details">
+                  <p className="actor-name">{actor.name}</p>
+                  <p>as</p>
+                  <p className="actor-character">{actor.character}</p>
+                </div>
+              </CastDetails>
+            ))}
+
+          </div>
+
 
         </div>
 
