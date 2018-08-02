@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import anime from 'animejs';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { fadeIn } from 'react-animations';
 import Youtube from '../youtube/Youtube';
 import Stars from '../stars/Stars';
@@ -55,9 +56,6 @@ class Details extends React.Component {
   }
 
   copyUrl = () => {
-    this.urlInput.select();
-    document.execCommand('copy');
-    this.urlInput.blur();
     this.animateCopiedTrue()
   }
 
@@ -87,23 +85,25 @@ class Details extends React.Component {
           <p className="details__overview">{movie.overview}</p>
 
           <div className="url-copy-container">
-            <div className="url-copy-button full-flex"
-              ref={el => this.copyButton = el}
-              onClick={this.copyUrl}
+            <CopyToClipboard
+              text={this.state.pageUrl}
+              onCopy={this.copyUrl}
               >
-              <input id="page-url"
-              ref={el => this.urlInput = el}
-              value={this.state.pageUrl}
-              />
-              <p
-              ref={el => this.copyButtonText = el}
-              >Copy Url</p>
-              <p
-              className="copy-checkmark"
-              ref={el => this.checkMark = el}
-              >&#x2713;</p>
-            </div>
+              <div
+              className="url-copy-button full-flex"
+              ref={el => this.copyButton = el}
+              >
+                <p
+                ref={el => this.copyButtonText = el}
+                >Copy Url</p>
+                <p
+                className="copy-checkmark"
+                ref={el => this.checkMark = el}
+                >&#x2713;</p>
+              </div>
+            </CopyToClipboard>
           </div>
+
         </div>
 
 
