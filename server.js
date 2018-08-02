@@ -29,7 +29,7 @@ app.get('/api/popular-movies', (req, res) => {
 
 // movie details route
 app.get('/api/movie/:id', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.OPENDB_KEY}&append_to_response=videos`)
+  fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.OPENDB_KEY}&append_to_response=videos,credits`)
   .then(response => {
     return response.json()
   .then(json => {
