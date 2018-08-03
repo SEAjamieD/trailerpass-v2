@@ -5,6 +5,7 @@
 
 .stars__row {
   display: flex;
+  color: red;
 }
 
 .star {

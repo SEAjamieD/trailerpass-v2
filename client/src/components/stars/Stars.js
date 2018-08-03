@@ -25,14 +25,20 @@ class Stars extends React.Component {
   render() {
     var rating = Math.round(this.props.rating);
     var stars = []
-    for (var i = 0; i < rating; i++) {
-      stars.push(<Star key={i + "S"}/>)
+
+    if (rating !== 0) {
+      for (var i = 0; i < rating; i++) {
+        stars.push(<Star key={i + "S"}/>)
+      }
+
+      var outlines = 10 - rating;
+      for (var j = 0; j < outlines; j++) {
+        stars.push(<StarOutline key={j + "SL"}/>)
+      }
+    } else {
+      stars = "No Viewer Rating Yet"
     }
 
-    var outlines = 10 - rating;
-    for (var j = 0; j < outlines; j++) {
-      stars.push(<StarOutline key={j + "SL"}/>)
-    }
 
     return (
       <div className="stars__container">
