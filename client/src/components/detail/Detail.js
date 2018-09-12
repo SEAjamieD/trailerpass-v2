@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from 'react-helmet';
 import styled, { keyframes } from 'styled-components';
 import anime from 'animejs';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -87,6 +88,12 @@ class Details extends React.Component {
 
     return (
       <div>
+
+      <Helmet>
+        <title>trailerPass</title>
+        <meta property="og:title" content={"trailerPass - " + movie.original_title} />
+        <meta property="og:image" content={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} />
+      </Helmet>
 
       <BackButton />
 
