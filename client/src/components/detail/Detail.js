@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 import styled, { keyframes } from 'styled-components';
 import anime from 'animejs';
@@ -79,6 +80,7 @@ class Details extends React.Component {
 
   render() {
     const {loading, movie, youTubeVid, cast} = this.state;
+    const {history} = this.props;
 
     if (loading === true) {
       return (
@@ -131,7 +133,7 @@ class Details extends React.Component {
           <div>
             {cast.map((actor) => (
               <CastDetails key={actor.id}>
-                <div className="profile-container">
+                <div className="profile-container" onClick={() => history.push(`/person/${actor.id}`)}>
                   <img src={'http://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
                 </div>
                 <div className="profile-details">
@@ -179,4 +181,4 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default withRouter(Details);
