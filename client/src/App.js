@@ -5,6 +5,7 @@ import {Helmet} from 'react-helmet';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
 import Detail from './components/detail/Detail';
+import Person from './components/person/Person';
 import './App.css';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/movie/:id" component={Detail} />
+            <Route exact path="/person/:id" component={Person} />
           </Switch>
         </BrowserRouter>
 
