@@ -41,6 +41,23 @@ app.get('/api/movie/:id', (req, res) => {
   })
 })
 
+// person details route
+app.get('/api/person/:person_id', (req, res) => {
+  fetch(`https://api.themoviedb.org/3/person/${req.params.person_id}?api_key=${process.env.OPENDB_KEY}&language=en-US&append_to_response=combined_credits`)
+  .then(response => {
+    return response.json()
+    .then(json => {
+      return response.ok ? json : Promise.reject(json);
+    });
+  })
+  .then((data) => {
+    res.json(data)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+})
+
 //search route
 app.get('/api/search/:query', (req, res) => {
   fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&query=${req.params.query}&page=1&include_adult=false&region=en-US`)

@@ -8,18 +8,22 @@ class Person extends React.Component {
     super();
     this.state = {
       loading: false,
-      actor: []
+      person: []
     }
   }
 
   componentDidMount() {
-    console.log('mounted');
+    this.fetchPersonDetails();
   }
 
   fetchPersonDetails = () => {
     const {match} = this.props;
     this.setState({loading: true})
-    // fetch(`/api/person/${match.params.person_id}`)
+    fetch(`/api/person/${match.params.person_id}`)
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data);
+      })
 
   }
 
