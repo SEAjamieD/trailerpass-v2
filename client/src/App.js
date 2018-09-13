@@ -31,7 +31,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/movie/:id" component={Detail} />
-            <Route exact path="/person/:id" component={Person} />
+            <Route exact path="/person/:person_id" component={Person} />
           </Switch>
         </BrowserRouter>
 
