@@ -86,7 +86,7 @@ class Person extends React.Component {
 
       let bornOn = new Date(date);
       let day = bornOn.getDate() + 1;
-      let month = monthArr[bornOn.getMonth() + 1];
+      let month = monthArr[bornOn.getMonth()];
       let year = bornOn.getFullYear();
 
       bornOn = `${month} ${day}, ${year}`;
