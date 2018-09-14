@@ -1,14 +1,19 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { fadeIn } from 'react-animations';
 
 import BackButtonOne from '../../common/backButton/BackButtonOne';
 import Loader from '../../common/loader/Loader';
+import PoweredBy from '../../common/poweredBy/PoweredBy';
 
 import './person.css';
+
+const fadeInAnimation = keyframes`${fadeIn}`;
 
 
 const PersonDetailsDiv = styled.div`
   padding-top: 70px;
+  padding-bottom: 5vh;
   width: 90%;
   margin: 0 auto;
   min-height: 40vh;
@@ -20,6 +25,7 @@ const PersonDetailsDiv = styled.div`
     "image info"
     "bio bio";
   grid-row-gap: 5vh;
+  animation: .5s ${fadeInAnimation};
 `;
 
 
@@ -104,7 +110,7 @@ render() {
 
       <PersonDetailsDiv>
         <div className="person__image-container">
-          <img src={'http://image.tmdb.org/t/p/w185/' + person.profile_path} alt={person.name}/>
+          <img src={'https://image.tmdb.org/t/p/w185/' + person.profile_path} alt={person.name}/>
         </div>
         <div className="person__name-container">
           <h2>{person.name}</h2>
@@ -115,6 +121,9 @@ render() {
           <p>{person.biography}</p>
         </div>
       </PersonDetailsDiv>
+
+      <PoweredBy />
+
     </div>
   );
 }

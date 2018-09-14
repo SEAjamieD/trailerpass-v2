@@ -1,11 +1,9 @@
 .person__image-container img {
-  /* border: 1px solid lime; */
   max-width: 155px;
   grid-area: image;
 }
 
 .person__name-container {
-  /* border: 1px solid lime; */
   grid-area: info;
 }
 
@@ -20,6 +18,5 @@
 }
 
 .person__bio-container {
-  /* border: 1px solid orange; */
   grid-area: bio;
 }
