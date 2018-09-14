@@ -15,9 +15,7 @@ class App extends Component {
       <div className="app">
 
         <div className="header full-flex">
-          <a href="https://quiet-cliffs-47087.herokuapp.com/">
-            <h1>trailerPass</h1>
-          </a>
+          <h1>trailerPass</h1>
         </div>
 
         <BrowserRouter>

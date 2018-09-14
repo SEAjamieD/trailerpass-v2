@@ -16,9 +16,3 @@
   color: red;
   z-index: 500;
 }
-
-.header a,
-.header a:visited,
-.header a:active {
-  color: red;
-}
