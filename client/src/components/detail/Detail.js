@@ -127,7 +127,7 @@ class Details extends React.Component {
             {cast.map((actor) => (
               <CastDetails key={actor.id} onClick={() => history.push(`/person/${actor.id}`)} >
                 <div className="profile-container">
-                  <img src={'http://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
+                  <img src={'https://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
                 </div>
                 <div className="profile-details">
                   <p className="actor-name">{actor.name}</p>
