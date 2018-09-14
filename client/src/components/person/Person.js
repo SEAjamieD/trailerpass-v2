@@ -15,6 +15,7 @@ const PersonDetailsDiv = styled.div`
   padding-top: 70px;
   padding-bottom: 5vh;
   width: 90%;
+  max-width: 550px;
   margin: 0 auto;
   min-height: 40vh;
   color: white;
