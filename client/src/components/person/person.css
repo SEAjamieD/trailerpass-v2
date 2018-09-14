@@ -14,6 +14,11 @@
   margin-bottom: 10px;
 }
 
+.person__age {
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
 .person__bio-container {
   /* border: 1px solid orange; */
   grid-area: bio;

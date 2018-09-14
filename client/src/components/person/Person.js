@@ -62,13 +62,31 @@ class Person extends React.Component {
       let age = thisYear - birthYear;
 
       if ( (today.getMonth() + 1) < birthMonth ||
-       ( (today.getMonth() + 1) == birthMonth && (today.getDate() + 1) < dayOfBirth ) ) {
+       ( (today.getMonth() + 1) === birthMonth && (today.getDate() + 1) < dayOfBirth ) ) {
         age--
       }
 
       return age;
     }
   }
+
+
+  bornOn = (date) => {
+    if (!date) {
+      return "unknown";
+    } else {
+      let monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+      let bornOn = new Date(date);
+      let day = bornOn.getDate() + 1;
+      let month = monthArr[bornOn.getMonth() + 1];
+      let year = bornOn.getFullYear();
+
+      bornOn = `${month} ${day}, ${year}`;
+      return bornOn;
+    }
+  }
+
 
 render() {
   const {loading, person} = this.state;
@@ -90,8 +108,8 @@ render() {
         </div>
         <div className="person__name-container">
           <h2>{person.name}</h2>
-          <p>Age: {this.getAge(person.birthday)}</p>
-          <p>Born: {person.birthday}</p>
+          <p className="person__age">Age: {this.getAge(person.birthday)}</p>
+          <p>Born: {this.bornOn(person.birthday)}</p>
         </div>
         <div className="person__bio-container">
           <p>{person.biography}</p>
