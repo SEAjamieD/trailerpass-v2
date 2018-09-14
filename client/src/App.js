@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {Helmet} from 'react-helmet';
 
 import Home from './components/home/Home';
 import Search from './components/search/Search';
@@ -14,13 +13,6 @@ class App extends Component {
 
     return (
       <div className="app">
-
-        <Helmet>
-          <title>trailerPass</title>
-          <meta property="og:title" content="trailerPass - Previews On Demand" />
-          <meta property="og:image" content="../public/icon.png" />
-        </Helmet>
-
 
         <div className="header full-flex">
           <h1>trailerPass</h1>
