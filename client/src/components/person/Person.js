@@ -51,7 +51,9 @@ class Person extends React.Component {
   }
 
   getAge = (birthday) => {
-    if (birthday) {
+    if (!birthday) {
+      return "unknown";
+    } else {
       let today = new Date();
       let thisYear = today.getFullYear();
       let birthYear = birthday.slice(0,4);
