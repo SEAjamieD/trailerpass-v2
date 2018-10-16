@@ -83,6 +83,7 @@ class Details extends React.Component {
     this.setState({
       hidden: true
     })
+    this.animateCopiedTrue()
   }
 
   render() {
@@ -127,13 +128,16 @@ class Details extends React.Component {
                 <p
                 ref={el => this.copyButtonText = el}
                 >Copy Url</p>
-                <p
-                className="copy-checkmark"
-                ref={el => this.checkMark = el}
-                >&#x2713;</p>
+
               </div>
             </CopyToClipboard>
             </ParticleEffectButton>
+            <div
+              className="copy-checkmark full-flex"
+              ref={el => this.checkMark = el}
+              >
+              <p><span>&#x2713;</span> copied</p>
+            </div>
           </div>
 
           <div>
@@ -165,26 +169,16 @@ class Details extends React.Component {
   }
 
 
-  // animateCopiedTrue() {
-  //   const { copyButton, copyButtonText, checkMark } = this;
-  //   anime({
-  //     targets: copyButtonText,
-  //     opacity: [1,0],
-  //     duration: 50
-  //   });
-  //   anime({
-  //     targets: copyButton,
-  //     width: "50px",
-  //     background: "#FF0000",
-  //     borderRadius: "50%",
-  //     duration: 1100
-  //   })
-  //   anime({
-  //     targets: checkMark,
-  //     opacity: [0,1],
-  //     duragion: 1100
-  //   })
-  // }
+  animateCopiedTrue() {
+    const { checkMark } = this;
+    anime({
+      targets: checkMark,
+      opacity: [0,1],
+      delay: 1000,
+      duration: 1000
+    })
+  }
+
 }
 
 export default withRouter(Details);
