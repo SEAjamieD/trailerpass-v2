@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 import Loader from '../../common/loader/Loader';
+import CategorySelector from '../categorySelector/CategorySelector';
 import PoweredBy from '../../common/poweredBy/PoweredBy';
 import Eyeglass from './eyeglass.svg';
 import './home.css';
@@ -14,6 +15,8 @@ const HomeDiv = styled.div`
   padding-top: 60px;
   animation: .5s ${fadeInAnimation};
   `;
+
+const categories = ['Popular', 'Action', 'In Theaters'];
 
 
 class Home extends React.Component {
@@ -71,6 +74,7 @@ class Home extends React.Component {
           <img className="list__random-image deep-box-shadow" src={randomMovieBackDrop} alt="movie backdrop"/>
         </div>
 
+      <CategorySelector categories={categories} moreMovies={moreMovies}/>
 
         <div className="movie-list-container">
           <div className="fade-overlay"></div>
