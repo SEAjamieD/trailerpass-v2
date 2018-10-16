@@ -72,10 +72,10 @@ class Home extends React.Component {
         </div>
 
 
-        <div className="movie-list-popular">
+        <div className="movie-list-container">
+          <div className="fade-overlay"></div>
         <h2 className="list__section-title text-shadow">Popular Movies</h2>
           <div className="list__slider-container">
-          <div className="fade-overlay"></div>
             {popularMovies.map((movie) => (
               <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
                   <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
@@ -84,15 +84,17 @@ class Home extends React.Component {
           </div>
         </div>
 
+      <div className="movie-list-container">
+        <div className="fade-overlay"></div>
         <h2 className="list__section-title text-shadow">Now Playing</h2>
         <div className="list__slider-container">
-        <div className="fade-overlay"></div>
           {moreMovies.map((movie) => (
             <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
                 <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
             </div>
           ))}
         </div>
+      </div>
 
         <div className="search__button full-flex"
             onClick={() => history.push(`/search`)}>
