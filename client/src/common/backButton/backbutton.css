@@ -4,10 +4,6 @@
   border: 2px solid #ff0000;
 }
 
-.arrow:visited {
-  border: 2px solid #ff0000;
-}
-
 .left-arrow {
   border-right: transparent;
   border-bottom: transparent;
