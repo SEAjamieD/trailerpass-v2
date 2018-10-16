@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="app">
 
-        <div className="header full-flex stripe-box-shadow">
+        <div className="header full-flex">
           <h1 className="text-shadow-dark">trailerPass</h1>
         </div>
 

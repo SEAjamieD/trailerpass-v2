@@ -25,7 +25,7 @@ class Backbutton extends React.Component {
   render() {
     return (
       <BackArrowDiv>
-        <Link to="/">
+        <Link to="/" className="visited">
           <div className="arrow left-arrow"></div>
         </Link>
       </BackArrowDiv>

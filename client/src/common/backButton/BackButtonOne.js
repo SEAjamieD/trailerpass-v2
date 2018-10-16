@@ -18,9 +18,6 @@ const BackArrowDiv = styled.div`
   z-index: 999;
   -webkit-transform: translate3d(0,0,0);
   animation: .5s ${fadeInAnimation};
-    &:visited {
-      border: 2px solid #ff0000;
-    }
   `;
 
 class Backbutton extends React.Component {
