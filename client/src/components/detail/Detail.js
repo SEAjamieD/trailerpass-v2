@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import anime from 'animejs';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import ParticleEffectButton from 'react-particle-effect-button';
 import { fadeIn } from 'react-animations';
 import Youtube from '../youtube/Youtube';
 import Stars from '../stars/Stars';
@@ -34,6 +35,7 @@ class Details extends React.Component {
   constructor() {
     super();
     this.state = {
+      hidden: false,
       movie: [],
       youTubeVid: '',
       pageUrl: '',
@@ -77,6 +79,12 @@ class Details extends React.Component {
     this.animateCopiedTrue()
   }
 
+  disappear = () => {
+    this.setState({
+      hidden: true
+    })
+  }
+
   render() {
     const {loading, movie, youTubeVid, cast} = this.state;
     const {history} = this.props;
@@ -104,9 +112,13 @@ class Details extends React.Component {
           <p className="details__overview">{movie.overview}</p>
 
           <div className="url-copy-container">
+            <ParticleEffectButton
+              color='red'
+              hidden={this.state.hidden}
+              >
             <CopyToClipboard
               text={this.state.pageUrl}
-              onCopy={this.copyUrl}
+              onCopy={this.disappear}
               >
               <div
               className="url-copy-button full-flex"
@@ -121,6 +133,7 @@ class Details extends React.Component {
                 >&#x2713;</p>
               </div>
             </CopyToClipboard>
+            </ParticleEffectButton>
           </div>
 
           <div>
@@ -152,26 +165,26 @@ class Details extends React.Component {
   }
 
 
-  animateCopiedTrue() {
-    const { copyButton, copyButtonText, checkMark } = this;
-    anime({
-      targets: copyButtonText,
-      opacity: [1,0],
-      duration: 50
-    });
-    anime({
-      targets: copyButton,
-      width: "50px",
-      background: "#FF0000",
-      borderRadius: "50%",
-      duration: 1100
-    })
-    anime({
-      targets: checkMark,
-      opacity: [0,1],
-      duragion: 1100
-    })
-  }
+  // animateCopiedTrue() {
+  //   const { copyButton, copyButtonText, checkMark } = this;
+  //   anime({
+  //     targets: copyButtonText,
+  //     opacity: [1,0],
+  //     duration: 50
+  //   });
+  //   anime({
+  //     targets: copyButton,
+  //     width: "50px",
+  //     background: "#FF0000",
+  //     borderRadius: "50%",
+  //     duration: 1100
+  //   })
+  //   anime({
+  //     targets: checkMark,
+  //     opacity: [0,1],
+  //     duragion: 1100
+  //   })
+  // }
 }
 
 export default withRouter(Details);

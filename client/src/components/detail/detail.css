@@ -41,6 +41,8 @@
 .url-copy-container {
   display: flex;
   align-items: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
   /* justify-content: flex-end; */
 }
 
@@ -50,8 +52,6 @@
   height: 50px;
   width: 100px;
   max-width: 200px;
-  margin-top: 3em;
-  margin-bottom: 2em;
   color: white;
   box-shadow: 0 4px 6px rgba(50,50,93,.2),
               0 1px 3px rgba(255,0,0,.5);
@@ -93,4 +93,10 @@
 
 .actor-character {
   margin-top: .5em;
+}
+
+.pbutton {
+  background: red;
+  height: 60px;
+  width: 200px;
 }
