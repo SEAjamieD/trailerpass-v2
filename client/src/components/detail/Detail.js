@@ -123,7 +123,7 @@ class Details extends React.Component {
                 onCopy={this.disappear}
                 >
                 <div
-                className="url-copy-button stripe-box-shadow full-flex"
+                className="url-copy-button full-flex"
                 ref={el => this.copyButton = el}
                 >
                   <p

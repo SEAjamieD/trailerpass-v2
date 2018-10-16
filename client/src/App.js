@@ -15,7 +15,7 @@ class App extends Component {
       <div className="app">
 
         <div className="header full-flex stripe-box-shadow">
-          <h1 className="styled-heading">trailerPass</h1>
+          <h1 className="text-shadow-dark">trailerPass</h1>
         </div>
 
         <BrowserRouter>

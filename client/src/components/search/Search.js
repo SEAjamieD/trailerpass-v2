@@ -90,7 +90,7 @@ class Search extends React.Component {
 
         <div className="search__results-container">
           {results.map((movie) => (
-            <div className="search__movie" key={movie.id} onClick={() => history.push(`/movie/${movie.id}`)}>
+            <div className="search__movie stripe-box-shadow" key={movie.id} onClick={() => history.push(`/movie/${movie.id}`)}>
                 <div className="search__image-container">
                   <img className="search__image-poster" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
                 </div>

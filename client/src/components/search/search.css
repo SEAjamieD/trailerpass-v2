@@ -1,14 +1,10 @@
-.search__container {
-
-}
-
 .search__form-container {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 850px;
-  background: black;
+  background: #fff;
 }
 
 .search__input {
@@ -22,8 +18,8 @@
   display: block;
   margin: 20px auto;
   padding: 15px 10px;
-  color: #333333;
-  background: #5b5b5b;
+  color: #5b5b5b;
+  background: #e9e9e9;
 }
 
 ::-webkit-input-placeholder {
@@ -40,6 +36,8 @@
 .search__movie {
   display: flex;
   margin-top: 10px;
+  height: 100px;
+  overflow: hidden;
 }
 
 .search__image-container {

@@ -42,8 +42,7 @@
 }
 
 .list__section-title {
-  color: white;
-  opacity: .6;
+  color: #333;
   font-size: 1.3em;
   padding: 10px 0 5px 10px;
 }
