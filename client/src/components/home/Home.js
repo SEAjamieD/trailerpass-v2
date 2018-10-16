@@ -68,7 +68,7 @@ class Home extends React.Component {
       <HomeDiv>
         <div className="hero-container" onClick={() => history.push(`/movie/${randomMovie.id}`)}>
           <h2 className="list__random-title text-shadow-dark">{randomMovie.title}</h2>
-          <img className="list__random-image stripe-box-shadow" src={randomMovieBackDrop} alt="movie backdrop"/>
+          <img className="list__random-image deep-box-shadow" src={randomMovieBackDrop} alt="movie backdrop"/>
         </div>
 
 
@@ -77,7 +77,7 @@ class Home extends React.Component {
           <div className="list__slider-container">
             {popularMovies.map((movie) => (
               <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
-                  <img className="stripe-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
+                  <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
               </div>
             ))}
           </div>
@@ -87,7 +87,7 @@ class Home extends React.Component {
         <div className="list__slider-container">
           {moreMovies.map((movie) => (
             <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
-                <img className="stripe-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
+                <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
             </div>
           ))}
         </div>

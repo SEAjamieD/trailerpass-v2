@@ -111,7 +111,7 @@ render() {
 
       <PersonDetailsDiv>
         <div className="person__image-container">
-          <img className="stripe-box-shadow" src={'https://image.tmdb.org/t/p/w185/' + person.profile_path} alt={person.name}/>
+          <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w185/' + person.profile_path} alt={person.name}/>
         </div>
         <div className="person__name-container">
           <h2 className="text-shadow-dark">{person.name}</h2>
