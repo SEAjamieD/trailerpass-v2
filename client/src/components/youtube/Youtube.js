@@ -20,7 +20,7 @@ class Youtube extends React.Component {
 
     return (
       <YoutubeWrapper>
-        <iframe title={movieTitle} className="youtube-player" width="500" height="294" src={youTubeVid} frameBorder="0"></iframe>
+        <iframe title={movieTitle} className="youtube-player stripe-box-shadow" width="500" height="294" src={youTubeVid} frameBorder="0"></iframe>
       </YoutubeWrapper>
     );
   }

@@ -14,7 +14,7 @@ const RevealDiv = styled.div`
   height: 50%;
   width: 0%;
   right: 30%;
-  background: black;
+  background: #fff;
   -webkit-transform: translate3d(0,0,0);
   z-index: 10;
   animation: ${revealAnimation} 2.5s ease-out;

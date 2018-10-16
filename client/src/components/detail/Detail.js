@@ -24,10 +24,9 @@ const CastDetails = styled.div`
   height: 100px;
   width: 100%;
   margin-bottom: 1em;
-  border-radius: 10px;
-  background: black;
-  box-shadow: 0 4px 6px rgba(51,51,51,.3),
-              0 1px 3px rgba(51,51,51, .5);
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(50,50,93,.21),
+              0 1px 3px rgba(0,0,0,.18);
 `;
 
 
@@ -107,30 +106,33 @@ class Details extends React.Component {
 
       <DetailsDiv>
         <div className="details__lower-info">
-          <h1 className="details__title">{movie.original_title}</h1>
+          <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
           <p className="details__release-date">Release Date: {movie.release_date}</p>
           <Stars rating={movie.vote_average}/>
           <p className="details__overview">{movie.overview}</p>
 
           <div className="url-copy-container">
             <ParticleEffectButton
-              color='red'
+              color='#00AFAB'
               hidden={this.state.hidden}
+              oscillationCoefficient={30}
               >
-            <CopyToClipboard
-              text={this.state.pageUrl}
-              onCopy={this.disappear}
-              >
-              <div
-              className="url-copy-button full-flex"
-              ref={el => this.copyButton = el}
-              >
-                <p
-                ref={el => this.copyButtonText = el}
-                >Copy Url</p>
 
-              </div>
-            </CopyToClipboard>
+              <CopyToClipboard
+                text={this.state.pageUrl}
+                onCopy={this.disappear}
+                >
+                <div
+                className="url-copy-button stripe-box-shadow full-flex"
+                ref={el => this.copyButton = el}
+                >
+                  <p
+                  ref={el => this.copyButtonText = el}
+                  >Copy Url</p>
+
+                </div>
+              </CopyToClipboard>
+
             </ParticleEffectButton>
             <div
               className="copy-checkmark full-flex"

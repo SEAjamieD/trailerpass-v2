@@ -18,7 +18,7 @@ const PersonDetailsDiv = styled.div`
   max-width: 550px;
   margin: 0 auto;
   min-height: 40vh;
-  color: white;
+  color: #333;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: auto;
@@ -111,10 +111,10 @@ render() {
 
       <PersonDetailsDiv>
         <div className="person__image-container">
-          <img src={'https://image.tmdb.org/t/p/w185/' + person.profile_path} alt={person.name}/>
+          <img className="stripe-box-shadow" src={'https://image.tmdb.org/t/p/w185/' + person.profile_path} alt={person.name}/>
         </div>
         <div className="person__name-container">
-          <h2>{person.name}</h2>
+          <h2 className="text-shadow-dark">{person.name}</h2>
           <p className="person__age">Age: {this.getAge(person.birthday)}</p>
           <p>Born: {this.bornOn(person.birthday)}</p>
         </div>

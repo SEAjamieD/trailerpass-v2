@@ -10,6 +10,7 @@
 .person__name-container h2 {
   font-size: 2em;
   margin-bottom: 10px;
+  color: #00AFAB;
 }
 
 .person__age {

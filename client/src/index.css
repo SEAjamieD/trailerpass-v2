@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial|Roboto:300,400,900');
 
 body {
-  background: black;
+  background: #fff;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -15,10 +15,6 @@ a {
   justify-content: center;
 }
 
-.border {
-  border: 1px solid pink;
-}
-
 .text-shadow {
   text-shadow: 0 4px 6px rgba(255,255,255,.31),
               0 1px 3px rgba(255,255,255,.18);
@@ -27,4 +23,9 @@ a {
 .text-shadow-dark {
   text-shadow: 0 4px 6px rgba(50,50,93,.11),
                0 1px 3px rgba(0,0,0,.08);
+}
+
+.stripe-box-shadow {
+  box-shadow: 0 4px 6px rgba(50,50,93,.21),
+              0 1px 3px rgba(0,0,0,.18);
 }

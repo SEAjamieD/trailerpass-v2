@@ -11,8 +11,15 @@
   width: 100%;
   max-width: 850px;
   height: 60px;
-  font-size: 36px;
-  background: black;
-  color: red;
+  background: #fff;
   z-index: 500;
+  font-size: 36px;
+}
+
+.styled-heading {
+  background: -webkit-linear-gradient(#fff, #5439FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 6px rgba(50,50,93,.11),
+               0 1px 3px rgba(0,0,0,.08);
 }

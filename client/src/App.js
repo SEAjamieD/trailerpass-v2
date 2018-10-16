@@ -14,8 +14,8 @@ class App extends Component {
     return (
       <div className="app">
 
-        <div className="header full-flex">
-          <h1>trailerPass</h1>
+        <div className="header full-flex stripe-box-shadow">
+          <h1 className="styled-heading">trailerPass</h1>
         </div>
 
         <BrowserRouter>
