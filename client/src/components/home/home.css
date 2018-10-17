@@ -62,6 +62,7 @@
 }
 
 .list__section-title {
+  text-transform: uppercase;
   color: #333;
   font-size: 1.3em;
   padding: 10px 0 5px 10px;

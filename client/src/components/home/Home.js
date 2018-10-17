@@ -24,31 +24,32 @@ class Home extends React.Component {
     super();
     this.state = {
       loading: false,
-      popularMovies: [],
-      moreMovies: [],
+      selectedCategory: 'popular movies',
+      selectedMovies: [],
+      selectedMoviesRow2: [],
       randomMovie: [],
       randomMovieBackDrop: '',
     }
   }
 
   componentDidMount() {
-    this.fetchMovies();
+    this.fetchPopularMovies();
   }
 
-  fetchMovies = () => {
+  fetchPopularMovies = () => {
     this.setState({loading: true})
     fetch('/api/popular-movies')
       .then(res => res.json())
       .then((data) => {
         console.log(data);
         let randomIndex = Math.floor(Math.random() * 10);
-        let popularMovies = data.results.slice(0,10);
-        let moreMovies = data.results.slice(11,20);
-        let randomMovie = popularMovies[randomIndex];
+        let selectedMovies = data.results.slice(0,10);
+        let selectedMoviesRow2 = data.results.slice(11,20);
+        let randomMovie = selectedMovies[randomIndex];
         let randomMovieBackDrop = 'https://image.tmdb.org/t/p/w500/' + randomMovie.backdrop_path;
         this.setState({
-          popularMovies,
-          moreMovies,
+          selectedMovies,
+          selectedMoviesRow2,
           randomMovie,
           randomMovieBackDrop,
           loading: false,
@@ -56,9 +57,24 @@ class Home extends React.Component {
       })
   }
 
+  fetchNewSet = (category) => {
+    fetch(`/api/${category}-movies`)
+      .then(res => res.json())
+      .then((data) => {
+        let selectedCategory = category;
+        let selectedMovies = data.results.slice(0,10);
+        let selectedMoviesRow2 = data.results.slice(11,20);
+        this.setState({
+          selectedCategory,
+          selectedMovies,
+          selectedMoviesRow2
+        })
+      })
+  }
+
 
   render() {
-    const { loading, popularMovies, randomMovie, randomMovieBackDrop, moreMovies} = this.state;
+    const { loading, selectedMovies, randomMovie, randomMovieBackDrop, selectedMoviesRow2, selectedCategory} = this.state;
     const {history} = this.props;
 
     if (loading === true) {
@@ -74,13 +90,13 @@ class Home extends React.Component {
           <img className="list__random-image deep-box-shadow" src={randomMovieBackDrop} alt="movie backdrop"/>
         </div>
 
-      <CategorySelector categories={categories} />
+      <CategorySelector categories={categories} fetchNewSet={this.fetchNewSet} />
 
         <div className="movie-list-container">
           <div className="fade-overlay"></div>
-        <h2 className="list__section-title text-shadow">Popular Movies</h2>
+        <h2 className="list__section-title text-shadow">{selectedCategory}</h2>
           <div className="list__slider-container">
-            {popularMovies.map((movie) => (
+            {selectedMovies.map((movie) => (
               <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
                   <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
               </div>
@@ -90,9 +106,8 @@ class Home extends React.Component {
 
       <div className="movie-list-container">
         <div className="fade-overlay"></div>
-        <h2 className="list__section-title text-shadow">Now Playing</h2>
         <div className="list__slider-container">
-          {moreMovies.map((movie) => (
+          {selectedMoviesRow2.map((movie) => (
             <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
                 <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
             </div>

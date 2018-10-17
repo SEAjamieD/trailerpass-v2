@@ -58,16 +58,11 @@ const Whiteh2 = styled.h2`
 `
 
 class CategorySelector extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
 
     }
-  }
-
-  setCategory(ev) {
-    let category = ev.target.dataset.category;
-    
   }
 
   render() {
@@ -84,7 +79,7 @@ class CategorySelector extends React.Component {
         key={category}
         data-category={category}
         style={{"backgroundImage": `url(${images[i]})`}}
-        onClick={this.setCategory}
+        onClick={ () => this.props.fetchNewSet( category.replace(/\s+/g, '-').toLowerCase() ) }
         >
         <Whiteh2>{category}</Whiteh2>
         <CatOverlay></CatOverlay>

@@ -11,7 +11,42 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // Put all API endpoints under here
 
 //home screen movies list route
+
+//popular movies
 app.get('/api/popular-movies', (req, res) => {
+  fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&page=1`)
+    .then(response => {
+      return response.json()
+    .then(json => {
+      return response.ok ? json : Promise.reject(json)
+      });
+    })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
+//action movies
+app.get('/api/action-movies', (req, res) => {
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018&with_genres=28%2C%2012`)
+    .then(response => {
+      return response.json()
+    .then(json => {
+      return response.ok ? json : Promise.reject(json)
+      });
+    })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
+app.get('/api/in-theaters-movies', (req, res) => {
   fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&page=1`)
     .then(response => {
       return response.json()
