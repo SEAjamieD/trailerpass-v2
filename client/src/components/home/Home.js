@@ -26,7 +26,7 @@ const MovieScrollDiv = styled.div`
   }
 `
 
-const categories = ['Popular','In Theaters', 'Comedy', 'Action',];
+const categories = ['Trending','In Theaters', 'Comedy', 'Action',];
 
 
 class Home extends React.Component {
@@ -34,7 +34,7 @@ class Home extends React.Component {
     super();
     this.state = {
       loading: false,
-      selectedCategory: 'popular',
+      selectedCategory: 'trending',
       selectedMovies: [],
       selectedMoviesRow2: [],
       randomMovie: [],
@@ -49,7 +49,7 @@ class Home extends React.Component {
 
   fetchPopularMovies = () => {
     this.setState({loading: true})
-    fetch('/api/popular-movies')
+    fetch('/api/trending-movies')
       .then(res => res.json())
       .then((data) => {
         console.log(data);

@@ -12,8 +12,25 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 //home screen movies list route
 
-//popular movies
-app.get('/api/popular-movies', (req, res) => {
+//trending movies
+app.get('/api/trending-movies', (req, res) => {
+
+  fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.OPENDB_KEY}`)
+    .then(response => {
+      return response.json()
+    .then(json => {
+      return response.ok ? json : Promise.reject(json)
+      });
+    })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
+app.get('/api/in-theaters-movies', (req, res) => {
   fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&page=1`)
     .then(response => {
       return response.json()
