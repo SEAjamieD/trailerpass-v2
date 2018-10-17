@@ -19,16 +19,19 @@ const CatScrollDiv = styled.div`
   }
 `
 
-const CategoryDiv = styled.div`
+const CategoryDiv = styled.button`
   position: relative;
   width: 200px;
   min-width: 200px;
   height: 60px;
-  color: white;
+  color: #fff;
+  font-size: 1.2em;
+  letter-spacing: 2px;
   text-transform: uppercase;
   overflow: hidden;
   margin-right: 15px;
   border-radius: 10px;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,37 +44,55 @@ const CategoryDiv = styled.div`
 
 const CatOverlay = styled.div`
   width: 100%;
-  height: 100%;
+  height: 130%;
   position: absolute;
   background: red;
-  opacity: .6
+  opacity: .6;
+  pointer-events: none;
 `;
 
 const Whiteh2 = styled.h2`
   color: #fff;
   z-index: 100;
+  pointer-events: none;
 `
 
 class CategorySelector extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+
+    }
+  }
+
+  setCategory(ev) {
+    let category = ev.target.dataset.category;
+    
+  }
 
   render() {
 
     const { categories, moreMovies } = this.props;
     const images = ["https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=25bd4127d97a5cf6d5baf5e2563436d2", "https://images.unsplash.com/photo-1529798856831-427dfd0a1ab1?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=75d7843b7dd8889a14b2da54a97ac9a0", "https://images.unsplash.com/photo-1523678802981-959dc4f70b96?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=c67fa93d666a03efc95126aabfc42c89", "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=4fffd7a27086f313d0db6a61cd38f39a"
-];
+    ];
 
-        return (
-        <CatScrollDiv>
-          <CatContainerDiv>
-          { categories.map((category, i) => (
-            <CategoryDiv key={category} style={{"backgroundImage": `url(${images[i]})`}} >
-            <Whiteh2>{category}</Whiteh2>
-            <CatOverlay></CatOverlay>
-            </CategoryDiv>
-          ))}
-          </CatContainerDiv>
-        </CatScrollDiv>
-      );
+    return (
+    <CatScrollDiv>
+      <CatContainerDiv>
+      { categories.map((category, i) => (
+        <CategoryDiv
+        key={category}
+        data-category={category}
+        style={{"backgroundImage": `url(${images[i]})`}}
+        onClick={this.setCategory}
+        >
+        <Whiteh2>{category}</Whiteh2>
+        <CatOverlay></CatOverlay>
+        </CategoryDiv>
+      ))}
+      </CatContainerDiv>
+    </CatScrollDiv>
+    );
   }
 }
 
