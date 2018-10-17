@@ -74,7 +74,7 @@ class Home extends React.Component {
           <img className="list__random-image deep-box-shadow" src={randomMovieBackDrop} alt="movie backdrop"/>
         </div>
 
-      <CategorySelector categories={categories} moreMovies={moreMovies}/>
+      <CategorySelector categories={categories} moreMovies={moreMovies.slice(0,3)}/>
 
         <div className="movie-list-container">
           <div className="fade-overlay"></div>

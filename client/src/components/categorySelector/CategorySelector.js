@@ -5,8 +5,8 @@ import testImg from './avengers.jpg';
 const CatContainerDiv = styled.div`
   display: flex;
   width: fit-content;
-  padding-right: calc((100% - 200px) / 2);
-  padding-left: calc((100% - 200px) / 2);
+  padding-right: 2.5%;
+  padding-left: 2.5%;
 `
 const CatScrollDiv = styled.div`
   width: 100%;
@@ -39,29 +39,39 @@ const CategoryDiv = styled.div`
   background-position: center;
 `
 
+const CatOverlay = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: red;
+  opacity: .6
+`;
+
 const Whiteh2 = styled.h2`
   color: #fff;
   z-index: 100;
 `
 
-
 class CategorySelector extends React.Component {
-
 
   render() {
 
-    const { categories } = this.props;
-    return (
-      <CatScrollDiv>
-      <CatContainerDiv>
-      { categories.map(category => (
-        <CategoryDiv key={category}>
-        <Whiteh2>{category}</Whiteh2>
-        </CategoryDiv>
-      ))}
-      </CatContainerDiv>
-      </CatScrollDiv>
-    );
+    const { categories, moreMovies } = this.props;
+    const images = ["https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=25bd4127d97a5cf6d5baf5e2563436d2", "https://images.unsplash.com/photo-1529798856831-427dfd0a1ab1?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=75d7843b7dd8889a14b2da54a97ac9a0", "https://images.unsplash.com/photo-1523678802981-959dc4f70b96?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=c67fa93d666a03efc95126aabfc42c89", "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=4fffd7a27086f313d0db6a61cd38f39a"
+];
+
+        return (
+        <CatScrollDiv>
+          <CatContainerDiv>
+          { categories.map((category, i) => (
+            <CategoryDiv key={category} style={{"backgroundImage": `url(${images[i]})`}} >
+            <Whiteh2>{category}</Whiteh2>
+            <CatOverlay></CatOverlay>
+            </CategoryDiv>
+          ))}
+          </CatContainerDiv>
+        </CatScrollDiv>
+      );
   }
 }
 
