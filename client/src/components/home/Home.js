@@ -16,7 +16,7 @@ const HomeDiv = styled.div`
   animation: .5s ${fadeInAnimation};
   `;
 
-const categories = ['Popular', 'Action', 'In Theaters'];
+const categories = ['Popular','In Theaters', 'Comedy', 'Action',];
 
 
 class Home extends React.Component {

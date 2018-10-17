@@ -62,6 +62,23 @@ app.get('/api/in-theaters-movies', (req, res) => {
     })
 })
 
+//comedy
+app.get('/api/comedy-movies', (req, res) => {
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018&with_genres=35`)
+    .then(response => {
+      return response.json()
+    .then(json => {
+      return response.ok ? json : Promise.reject(json)
+      });
+    })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
 // movie details route
 app.get('/api/movie/:id', (req, res) => {
   fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.OPENDB_KEY}&append_to_response=videos,credits`)
