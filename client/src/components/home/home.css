@@ -27,7 +27,7 @@
 .list__slider-container {
   position: relative;
   padding-left: 2.5%;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;

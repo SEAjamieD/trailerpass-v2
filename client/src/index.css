@@ -26,5 +26,6 @@ a {
 }
 
 .deep-box-shadow {
- box-shadow: 4px 3px 8px 0px #0000009e;
+ box-shadow: 0px 26px 42px -19px rgba(0,0,0,0.9);
+ box-shadow: 0px 25px 26px -21px rgba(0,0,0,1);
 }
