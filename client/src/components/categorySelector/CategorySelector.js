@@ -21,11 +21,11 @@ const CatScrollDiv = styled.div`
 
 const CategoryDiv = styled.button`
   position: relative;
-  width: 200px;
-  min-width: 200px;
-  height: 60px;
+  width: 150px;
+  min-width: 150px;
+  height: 50px;
   color: #fff;
-  font-size: 1.2em;
+  font-size: .9em;
   letter-spacing: 2px;
   text-transform: uppercase;
   overflow: hidden;
