@@ -80,7 +80,7 @@ class CategorySelector extends React.Component {
         isActive={isActive === i ? 'active' : ''}
         data-category={category}
         style={{"backgroundImage": `url(${images[i]})`}}
-        onClick={ () => this.props.fetchNewSet( category.replace(/\s+/g, '-').toLowerCase(), i ) }
+        onClick={ () => this.props.fetchNewSet( category, i ) }
         >
           <Whiteh2>{category}</Whiteh2>
         <CatOverlay></CatOverlay>

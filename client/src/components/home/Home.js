@@ -24,7 +24,7 @@ class Home extends React.Component {
     super();
     this.state = {
       loading: false,
-      selectedCategory: 'popular movies',
+      selectedCategory: 'popular',
       selectedMovies: [],
       selectedMoviesRow2: [],
       randomMovie: [],
@@ -59,7 +59,7 @@ class Home extends React.Component {
   }
 
   fetchNewSet = (category, i) => {
-    fetch(`/api/${category}-movies`)
+    fetch(`/api/${category.replace(/\s+/g, '-').toLowerCase()}-movies`)
       .then(res => res.json())
       .then((data) => {
         let isActive = i;
