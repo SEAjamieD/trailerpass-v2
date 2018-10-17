@@ -16,6 +16,16 @@ const HomeDiv = styled.div`
   animation: .5s ${fadeInAnimation};
   `;
 
+const MovieScrollDiv = styled.div`
+  width: 100%;
+  padding-bottom: 20px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
+
 const categories = ['Popular','In Theaters', 'Comedy', 'Action',];
 
 
@@ -95,27 +105,31 @@ class Home extends React.Component {
 
       <CategorySelector categories={categories} fetchNewSet={this.fetchNewSet} isActive={isActive} />
 
+      <h2 className="list__section-title text-shadow">{selectedCategory}</h2>
         <div className="movie-list-container">
           <div className="fade-overlay"></div>
-        <h2 className="list__section-title text-shadow">{selectedCategory}</h2>
+          <MovieScrollDiv>
+            <div className="list__slider-container">
+              {selectedMovies.map((movie) => (
+                <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
+                    <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
+                </div>
+              ))}
+            </div>
+          </MovieScrollDiv>
+        </div>
+
+      <div className="movie-list-container mlc2">
+        <div className="fade-overlay"></div>
+        <MovieScrollDiv>
           <div className="list__slider-container">
-            {selectedMovies.map((movie) => (
+            {selectedMoviesRow2.map((movie) => (
               <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
                   <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
               </div>
             ))}
           </div>
-        </div>
-
-      <div className="movie-list-container">
-        <div className="fade-overlay"></div>
-        <div className="list__slider-container">
-          {selectedMoviesRow2.map((movie) => (
-            <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
-                <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
-            </div>
-          ))}
-        </div>
+        </MovieScrollDiv>
       </div>
 
         <div className="search__button full-flex"

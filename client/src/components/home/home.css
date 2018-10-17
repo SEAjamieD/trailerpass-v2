@@ -25,25 +25,26 @@
 }
 
 .list__slider-container {
-  position: relative;
-  padding-left: 2.5%;
-  padding-bottom: 20px;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
+  width: fit-content;
+  padding-right: 2.5%;
+  padding-left: 2.5%;
 }
 
 .movie-list-container {
   position: relative;
 }
 
+.mlc2 {
+  margin-top: 10px;
+}
+
 .fade-overlay {
   position: absolute;
   z-index: 10;
   right: 0;
-  bottom: -5px;
-  height: 90%;
+  bottom: 5%;
+  height: 100%;
   width: 20%;
   pointer-events: none;
   background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
@@ -65,7 +66,7 @@
   text-transform: uppercase;
   color: #333;
   font-size: 1.3em;
-  padding: 10px 0 5px 10px;
+  padding: 0px 0 5px 10px;
 }
 
 .search__button {

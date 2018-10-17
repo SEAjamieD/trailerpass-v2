@@ -12,7 +12,7 @@ const CatContainerDiv = styled.div`
 const CatScrollDiv = styled.div`
   width: 100%;
   padding-top: 20px;
-  padding-bottom: 25px;
+  padding-bottom: 35px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
