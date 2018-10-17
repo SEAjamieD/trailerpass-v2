@@ -29,6 +29,7 @@ class Home extends React.Component {
       selectedMoviesRow2: [],
       randomMovie: [],
       randomMovieBackDrop: '',
+      isActive: 0
     }
   }
 
@@ -57,14 +58,16 @@ class Home extends React.Component {
       })
   }
 
-  fetchNewSet = (category) => {
+  fetchNewSet = (category, i) => {
     fetch(`/api/${category}-movies`)
       .then(res => res.json())
       .then((data) => {
+        let isActive = i;
         let selectedCategory = category;
         let selectedMovies = data.results.slice(0,10);
         let selectedMoviesRow2 = data.results.slice(11,20);
         this.setState({
+          isActive,
           selectedCategory,
           selectedMovies,
           selectedMoviesRow2
@@ -74,7 +77,7 @@ class Home extends React.Component {
 
 
   render() {
-    const { loading, selectedMovies, randomMovie, randomMovieBackDrop, selectedMoviesRow2, selectedCategory} = this.state;
+    const { loading, selectedMovies, randomMovie, randomMovieBackDrop, selectedMoviesRow2, selectedCategory, isActive} = this.state;
     const {history} = this.props;
 
     if (loading === true) {
@@ -90,7 +93,7 @@ class Home extends React.Component {
           <img className="list__random-image deep-box-shadow" src={randomMovieBackDrop} alt="movie backdrop"/>
         </div>
 
-      <CategorySelector categories={categories} fetchNewSet={this.fetchNewSet} />
+      <CategorySelector categories={categories} fetchNewSet={this.fetchNewSet} isActive={isActive} />
 
         <div className="movie-list-container">
           <div className="fade-overlay"></div>
