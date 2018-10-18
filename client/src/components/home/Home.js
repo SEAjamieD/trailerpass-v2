@@ -114,7 +114,33 @@ class Home extends React.Component {
       infinite: false,
       initialSlide: 1,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1445,
+          settings: {
+            centerPadding: "150px"
+          }
+        },
+        {
+          breakpoint: 1025,
+          settings: {
+            centerPadding: "200px"
+          }
+        },
+        {
+          breakpoint: 770,
+          settings: {
+            centerPadding: "180px"
+          }
+        },
+        {
+          breakpoint: 426,
+          settings: {
+            centerPadding: "50px"
+          }
+        }
+      ]
     };
 
     if (loading === true) {
@@ -126,7 +152,9 @@ class Home extends React.Component {
     return (
       <HomeDiv>
 
+
         { randomMovies &&
+        <div className="test-container">
         <Slider {...sliderSettings}>
           {randomMovies.map((randomMovie, i) => (
             <div key={i} className="hero-container" onClick={() => history.push(`/movie/${randomMovie.id}`)}>
@@ -135,6 +163,7 @@ class Home extends React.Component {
             </div>
           ))}
         </Slider>
+      </div>
       }
 
 
