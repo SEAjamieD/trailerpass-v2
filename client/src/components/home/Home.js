@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import Slider from 'react-slick';
 import { fadeIn } from 'react-animations';
 import Loader from '../../common/loader/Loader';
 import CategorySelector from '../categorySelector/CategorySelector';
@@ -52,8 +53,7 @@ class Home extends React.Component {
       selectedCategory: 'trending',
       selectedMovies: [],
       selectedMoviesRow2: [],
-      randomMovie: [],
-      randomMovieBackDrop: '',
+      randomMovies: [],
       isActive: 0
     }
   }
@@ -71,13 +71,12 @@ class Home extends React.Component {
         let randomIndex = Math.floor(Math.random() * 10);
         let selectedMovies = data.results.slice(0,10);
         let selectedMoviesRow2 = data.results.slice(11,20);
-        let randomMovie = selectedMovies[randomIndex];
-        let randomMovieBackDrop = 'https://image.tmdb.org/t/p/w500/' + randomMovie.backdrop_path;
+        let randomMovies = data.results.slice(13,16);
+
         this.setState({
           selectedMovies,
           selectedMoviesRow2,
-          randomMovie,
-          randomMovieBackDrop,
+          randomMovies,
           loading: false,
         })
       })
@@ -102,8 +101,19 @@ class Home extends React.Component {
 
 
   render() {
-    const { loading, selectedMovies, randomMovie, randomMovieBackDrop, selectedMoviesRow2, selectedCategory, isActive} = this.state;
+    const { loading, selectedMovies, randomMovies, selectedMoviesRow2, selectedCategory, isActive} = this.state;
     const {history} = this.props;
+
+    const sliderSettings = {
+      dots: false,
+      arrows: false,
+      centerPadding: "20px",
+      centerMode: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
 
     if (loading === true) {
       return (
@@ -113,10 +123,20 @@ class Home extends React.Component {
 
     return (
       <HomeDiv>
-        <div className="hero-container" onClick={() => history.push(`/movie/${randomMovie.id}`)}>
-          <h2 className="list__random-title text-shadow-dark">{randomMovie.title}</h2>
-          <img className="list__random-image deep-box-shadow" src={randomMovieBackDrop} alt="movie backdrop"/>
-        </div>
+
+        { randomMovies &&
+        <Slider {...sliderSettings}>
+          {randomMovies.map((randomMovie, i) => (
+            <div key={i} className="hero-container" onClick={() => history.push(`/movie/${randomMovie.id}`)}>
+              <h2 className="list__random-title text-shadow-dark">{randomMovie.title}</h2>
+              <img className="list__random-image deep-box-shadow" src={'https://image.tmdb.org/t/p/w500/' + randomMovie.backdrop_path} alt="movie backdrop"/>
+            </div>
+          ))}
+        </Slider>
+      }
+
+
+
 
       <CategorySelector categories={categories} fetchNewSet={this.fetchNewSet} isActive={isActive} />
 
