@@ -1,6 +1,6 @@
 .slick-slide {
   opacity: 0.7;
-  transition: transform .75s;
+  transition: transform .75s, opacity .5s;
 }
 
 .slick-slider {
