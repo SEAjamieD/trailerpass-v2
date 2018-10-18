@@ -1,6 +1,6 @@
 .slick-slide {
   opacity: 0.7;
-  /* margin: 10px; */
+  transition: transform .75s;
 }
 
 .slick-slider {
@@ -8,7 +8,7 @@
 }
 
 .slick-active {
-  transform: scale(1.2);
+  transform: scale(1.3);
   z-index: 10;
   position: relative;
   opacity: 1;
@@ -17,7 +17,7 @@
 }
 
 .slick-track {
-  padding: 1.1em 0 1.5em;
+  padding: 1.7em 0 1.5em;
 }
 
 .slick-list {
