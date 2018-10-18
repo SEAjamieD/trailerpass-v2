@@ -107,11 +107,10 @@ class Home extends React.Component {
     const sliderSettings = {
       dots: false,
       arrows: false,
-      // centerPadding: "30px",
       centerMode: true,
+      swipeToSlide: true,
       infinite: false,
       initialSlide: 1,
-      speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1
     };
