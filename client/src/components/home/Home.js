@@ -1,5 +1,9 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import store from '../../store';
+
+import { setSelectedMovies } from '../../actions/Movies';
+
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 import Loader from '../../common/loader/Loader';
@@ -27,33 +31,26 @@ class Home extends React.Component {
     this.state = {
       loading: false,
       selectedCategory: 'trending',
-      selectedMovies: [],
-      selectedMoviesRow2: [],
-      randomMovies: [],
       isActive: 0
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.fetchPopularMovies();
   }
 
+  componentDidMount() {
+  }
+
   fetchPopularMovies = () => {
-    this.setState({loading: true})
     fetch('/api/trending-movies')
       .then(res => res.json())
       .then((data) => {
-        console.log(data);
+        let selectedCategory = 'trending';
         let selectedMovies = data.results.slice(0,10);
         let selectedMoviesRow2 = data.results.slice(11,20);
         let randomMovies = data.results.slice(13,16);
-
-        this.setState({
-          selectedMovies,
-          selectedMoviesRow2,
-          randomMovies,
-          loading: false,
-        })
+        store.dispatch(setSelectedMovies(selectedCategory, selectedMovies, selectedMoviesRow2, randomMovies))
       })
   }
 
@@ -79,7 +76,6 @@ class Home extends React.Component {
     const { loading, selectedMovies, randomMovies, selectedMoviesRow2, selectedCategory, isActive} = this.state;
     const {history} = this.props;
 
-
     if (loading === true) {
       return (
         <Loader />
@@ -94,11 +90,18 @@ class Home extends React.Component {
           <img src={Eyeglass} alt="search icon" className="search__eyeglass" />
         </div>
 
-        <HeroSlider history={history} randomMovies={randomMovies} />
+        <HeroSlider history={history} randomMovies={store.getState().movies.randomMovies} />
 
-        <CategorySelector categories={categories} fetchNewSet={this.fetchNewSet} isActive={isActive} />
+        <CategorySelector
+          fetchNewSet={this.fetchNewSet}
+          categories={categories}
+          isActive={isActive} />
 
-        <SelectedMovies history={history} selectedCategory={selectedCategory} selectedMovies={selectedMovies} selectedMoviesRow2={selectedMoviesRow2} />
+        <SelectedMovies
+          history={history}
+          selectedCategory={store.getState().movies.selectedCategory}
+          selectedMovies={store.getState().movies.selectedMovies}
+          selectedMoviesRow2={store.getState().movies.selectedMoviesRow2} />
 
         <PoweredBy />
 
