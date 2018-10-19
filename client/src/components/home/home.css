@@ -63,18 +63,6 @@
   margin-top: 10px;
 }
 
-.list__image-poster {
-  width: 130px;
-  min-width: 130px;
-  margin-right: 15px;
-}
-
-.list__image-poster img {
-  object-fit: contain;
-  max-width: 100%;
-  border-radius: 10px;
-}
-
 .list__section-title {
   text-transform: uppercase;
   color: #333;

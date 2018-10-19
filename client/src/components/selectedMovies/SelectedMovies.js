@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import anime from 'animejs';
 
 const SelectedMoviesContainer = styled.div`
   position: relative;
@@ -26,7 +27,22 @@ const MovieScrollDiv = styled.div`
   }
 `
 
+const ListImagePoster = styled.div`
+  width: 130px;
+  min-width: 130px;
+  margin-right: 15px;
+  img {
+    object-fit: contain;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+`
+
 class SelectedMovies extends React.Component {
+
+  componentDidUpdate() {
+    console.log("%c movie list updated", "background: purple; color: white;")
+  }
 
   render() {
     const { history, selectedCategory, selectedMovies, selectedMoviesRow2 } = this.props;
@@ -38,10 +54,13 @@ class SelectedMovies extends React.Component {
           <div className="movie-list-container">
             <MovieScrollDiv>
               <div className="list__slider-container">
-                {selectedMovies.map((movie) => (
-                  <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
+                {selectedMovies.map((movie, i) => (
+                  <ListImagePoster
+                    key={movie.id}
+                    style={{animationDelay: `${i * 800}` }}
+                    onClick={() => history.push(`/movie/${movie.id}`)}>
                       <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
-                  </div>
+                  </ListImagePoster>
                 ))}
               </div>
             </MovieScrollDiv>
@@ -51,9 +70,11 @@ class SelectedMovies extends React.Component {
           <MovieScrollDiv>
             <div className="list__slider-container">
               {selectedMoviesRow2.map((movie) => (
-                <div key={movie.id} className="list__image-poster" onClick={() => history.push(`/movie/${movie.id}`)}>
+                <ListImagePoster
+                  key={movie.id}
+                  onClick={() => history.push(`/movie/${movie.id}`)}>
                     <img className="deep-box-shadow" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
-                </div>
+                </ListImagePoster>
               ))}
             </div>
           </MovieScrollDiv>
@@ -61,6 +82,9 @@ class SelectedMovies extends React.Component {
       </SelectedMoviesContainer>
     );
   }
+
 }
+
+
 
 export default SelectedMovies;
