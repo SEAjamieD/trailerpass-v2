@@ -30,6 +30,7 @@ const CategoryDiv = styled.button`
   overflow: hidden;
   margin-right: 15px;
   border-radius: 10px;
+  background-clip: padding-box;
   border: none;
   outline: 0;
   display: flex;
@@ -47,6 +48,7 @@ const CatOverlay = styled.div`
   width: 100%;
   height: 130%;
   border-radius: 10px;
+  background-clip: padding-box;
   position: absolute;
   background: red;
   opacity: .6;
