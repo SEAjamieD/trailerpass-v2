@@ -12,7 +12,7 @@ class HeroSlider extends React.Component {
       centerMode: true,
       className: 'hero-slider',
       centerPadding: "150px",
-      touchThreshold: 2,
+      touchThreshold: 100,
       swipeToSlide: true,
       speed: 700,
       infinite: false,
