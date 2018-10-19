@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import store from '../../store';
 
-import { setSelectedMovies } from '../../actions/Movies';
+import { _initialMovieFetch, _fetchNewSet } from '../../actions/Movies';
 
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
@@ -24,63 +24,26 @@ const HomeDiv = styled.div`
 
 const categories = ['Trending','In Theaters', 'Comedy', 'Action',];
 
-
 class Home extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: false,
-      selectedCategory: 'trending',
-      isActive: 0
-    }
-  }
-
-  componentWillMount() {
-    this.fetchPopularMovies();
-  }
-
-  componentDidMount() {
-  }
-
-  fetchPopularMovies = () => {
-    fetch('/api/trending-movies')
-      .then(res => res.json())
-      .then((data) => {
-        let selectedCategory = 'trending';
-        let selectedMovies = data.results.slice(0,10);
-        let selectedMoviesRow2 = data.results.slice(11,20);
-        let randomMovies = data.results.slice(13,16);
-        store.dispatch(setSelectedMovies(selectedCategory, selectedMovies, selectedMoviesRow2, randomMovies))
-      })
-  }
 
   fetchNewSet = (category, i) => {
-    fetch(`/api/${category.replace(/\s+/g, '-').toLowerCase()}-movies`)
+    let currentCategory = store.getState().movies.selectedCategory;
+    if (category !== currentCategory) {
+      fetch(`/api/${category.replace(/\s+/g, '-').toLowerCase()}-movies`)
       .then(res => res.json())
       .then((data) => {
         let isActive = i;
         let selectedCategory = category;
         let selectedMovies = data.results.slice(0,10);
         let selectedMoviesRow2 = data.results.slice(11,20);
-        this.setState({
-          isActive,
-          selectedCategory,
-          selectedMovies,
-          selectedMoviesRow2
-        })
+        store.dispatch(_fetchNewSet(isActive, selectedCategory, selectedMovies, selectedMoviesRow2))
       })
+    }
   }
 
 
   render() {
-    const { loading, selectedMovies, randomMovies, selectedMoviesRow2, selectedCategory, isActive} = this.state;
     const {history} = this.props;
-
-    if (loading === true) {
-      return (
-        <Loader />
-      );
-    }
 
     return (
       <HomeDiv>
@@ -95,7 +58,7 @@ class Home extends React.Component {
         <CategorySelector
           fetchNewSet={this.fetchNewSet}
           categories={categories}
-          isActive={isActive} />
+          isActive={store.getState().movies.isActive} />
 
         <SelectedMovies
           history={history}
