@@ -19,7 +19,7 @@ const FadeOverlay = styled.div`
 const MovieScrollDiv = styled.div`
   width: 100%;
   padding-bottom: 30px;
-  overflow: auto;
+  overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
     display: none;
