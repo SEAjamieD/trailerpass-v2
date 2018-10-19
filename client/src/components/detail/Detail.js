@@ -52,10 +52,8 @@ class Details extends React.Component {
     fetch(`/api/movie/${match.params.id}`)
       .then(res => res.json())
       .then((data) => {
-        console.log(data);
         if (data.videos.results[0]) {
           let cast = data.credits.cast.slice(0,5);
-          console.log(cast);
 
           this.setState({
             movie: data,

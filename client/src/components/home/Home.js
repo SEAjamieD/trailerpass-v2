@@ -1,11 +1,15 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+
+// import redux stuff
 import store from '../../store';
+import { _fetchNewSet } from '../../actions/Movies';
 
-import { _initialMovieFetch, _fetchNewSet } from '../../actions/Movies';
-
+//import libraries
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
+
+// import components
 import Loader from '../../common/loader/Loader';
 import HeroSlider from '../heroSlider/HeroSlider';
 import SelectedMovies from '../selectedMovies/SelectedMovies';
