@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import store from './store';
 import { _initialMovieFetch } from './actions/Movies';
 
+import Menu from './components/menu/Menu';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
 import Detail from './components/detail/Detail';
@@ -33,9 +34,12 @@ class App extends Component {
     return (
       <div className="app">
 
-        <div className="header full-flex">
+        <div className="header">
           <h1 className="text-shadow-dark">trailerPass</h1>
+          <Menu />
         </div>
+
+
 
         <BrowserRouter>
           <Switch>
