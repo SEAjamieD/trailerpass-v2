@@ -9,6 +9,13 @@ a {
   text-decoration: none;
 }
 
+/* normalize input for ios and other devices */
+input[type="text"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .full-flex {
   display: flex;
   align-items: center;
