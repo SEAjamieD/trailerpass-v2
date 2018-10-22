@@ -6,8 +6,8 @@ const MenuDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  left: 5px;
-  top: 5px;
+  left: 10px;
+  top: 10px;
   height: 50px;
   width: 50px;
   z-index: 9999;
