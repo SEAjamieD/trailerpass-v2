@@ -80,7 +80,7 @@ const MenuOverlay = styled.div`
   left: 0;
   top: 0;
   bottom: 0;
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   background: black;
   opacity: 0.6;
