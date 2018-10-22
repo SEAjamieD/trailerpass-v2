@@ -12,7 +12,11 @@
   width: 90%;
   border: 1px solid #5439FF;
   background: #fff;
-  box-shadow: 0px 25px 26px -21px rgba(0,0,0,1) !important;
+  transition: box-shadow .5s;
+}
+
+.search__input:focus {
+  box-shadow: 0px 25px 26px -21px rgba(0,0,0,1);
 }
 
 ::-webkit-input-placeholder {
