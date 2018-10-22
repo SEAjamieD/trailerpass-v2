@@ -36,6 +36,16 @@ const MenuSlideout = styled.div`
   background: white;
   transform: ${props => props.isOpen === true ? 'translateX(0%)' : 'translateX(-101%)' };
   transition: transform .25s;
+  ul {
+    padding-top: 60px;
+    text-align: center;
+    li {
+      font-size: 1.2em;
+      text-transform: uppercase;
+      padding: 10px 0;
+      color: #333;
+    }
+  }
 `;
 
 const CloseDiv = styled.div`
@@ -61,6 +71,8 @@ const CloseDiv = styled.div`
     transform: rotate(-45deg);
   }
 `;
+
+
 
 class Menu extends React.Component {
   constructor() {
@@ -95,6 +107,14 @@ class Menu extends React.Component {
             <div className="x1"></div>
             <div className="x2"></div>
           </CloseDiv>
+
+          <ul>
+            <li>About</li>
+            <li>Nothing</li>
+            <li>Here</li>
+            <li>Yet</li>
+          </ul>
+
         </MenuSlideout>
       </div>
     );
