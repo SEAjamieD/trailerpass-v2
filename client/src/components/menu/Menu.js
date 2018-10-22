@@ -74,6 +74,20 @@ const CloseDiv = styled.div`
   }
 `;
 
+const MenuOverlay = styled.div`
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100vw;
+  background: black;
+  opacity: 0.6;
+  z-index: 9990;
+  display: ${props => props.isOpen === true ? 'block' : 'none' };
+`;
+
 
 
 class Menu extends React.Component {
@@ -96,6 +110,9 @@ class Menu extends React.Component {
     const { isOpen } = this.state;
     return (
       <div>
+        <MenuOverlay
+          isOpen={isOpen}
+          ></MenuOverlay>
         <MenuDiv
         onClick={this.toggleMenu}
         >

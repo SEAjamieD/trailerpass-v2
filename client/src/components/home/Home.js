@@ -24,8 +24,11 @@ const fadeInAnimation = keyframes`${fadeIn}`;
 
 const HomeDiv = styled.div`
   padding-top: 60px;
-  animation: .5s ${fadeInAnimation};
   `;
+
+const FadeIn = styled.div`
+  animation: .5s ${fadeInAnimation};
+`;
 
 const categories = ['Trending','In Theaters', 'Comedy', 'Action',];
 
@@ -60,20 +63,22 @@ class Home extends React.Component {
           <img src={Eyeglass} alt="search icon" className="search__eyeglass" />
         </div>
 
-        <HeroSlider history={history} randomMovies={store.getState().movies.randomMovies} />
+        <FadeIn>
+          <HeroSlider history={history} randomMovies={store.getState().movies.randomMovies} />
 
-        <CategorySelector
-          fetchNewSet={this.fetchNewSet}
-          categories={categories}
-          isActive={store.getState().movies.isActive} />
+          <CategorySelector
+            fetchNewSet={this.fetchNewSet}
+            categories={categories}
+            isActive={store.getState().movies.isActive} />
 
-        <SelectedMovies
-          history={history}
-          selectedCategory={store.getState().movies.selectedCategory}
-          selectedMovies={store.getState().movies.selectedMovies}
-          selectedMoviesRow2={store.getState().movies.selectedMoviesRow2} />
+          <SelectedMovies
+            history={history}
+            selectedCategory={store.getState().movies.selectedCategory}
+            selectedMovies={store.getState().movies.selectedMovies}
+            selectedMoviesRow2={store.getState().movies.selectedMoviesRow2} />
 
-        <PoweredBy />
+          <PoweredBy />
+        </FadeIn>
 
       </HomeDiv>
     );
