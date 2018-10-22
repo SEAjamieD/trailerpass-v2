@@ -29,7 +29,7 @@ const MenuBar = styled.div`
 `;
 
 const MenuSlideout = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 50%;
