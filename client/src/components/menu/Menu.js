@@ -101,8 +101,10 @@ class Menu extends React.Component {
   toggleMenu = () => {
     if (this.state.isOpen === true) {
       this.setState({isOpen: false})
+      document.body.classList.remove("menu-open")
     } else {
       this.setState({isOpen: true})
+      document.body.classList.add("menu-open")
     }
   }
 

@@ -5,6 +5,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
 }
