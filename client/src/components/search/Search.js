@@ -1,5 +1,8 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import store from '../../store';
+
+import { _searchMovie } from '../../actions/Search';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 import BackButton from '../../common/backButton/BackButton';
@@ -12,16 +15,16 @@ const SearchDiv = styled.div`
   animation: .5s ${fadeInAnimation};
   `;
 
+const SearchFormContainer = styled.div`
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 850px;
+  background: #fff;
+`;
+
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false,
-      results: []
-    }
-
-  }
 
   componentDidMount() {
     this.searchInput.focus();
@@ -38,13 +41,10 @@ class Search extends React.Component {
       .then(res => res.json())
       .then((data) => {
         console.log(data);
-        this.setState({
-          results: data.results,
-          loading: false
-        })
+        store.dispatch(_searchMovie(data.results))
       })
     } else if (this.searchInput.value.length < 1) {
-      this.setState({results: []})
+        store.dispatch(_searchMovie([]));
     }
   }
 
@@ -65,7 +65,6 @@ class Search extends React.Component {
 
 
   render() {
-    const {results} = this.state;
     const {history} = this.props;
 
     return(
@@ -73,7 +72,7 @@ class Search extends React.Component {
       <BackButton />
       <SearchDiv>
 
-        <div className="search__form-container">
+        <SearchFormContainer>
           <form
             onSubmit={this.handleSubmit}
             className="search__form"
@@ -86,10 +85,10 @@ class Search extends React.Component {
               placeholder="Search by Movie Title"
               />
           </form>
-        </div>
+        </SearchFormContainer>
 
         <div className="search__results-container">
-          {results.map((movie) => (
+          {store.getState().search.results.map((movie) => (
             <div className="search__movie deep-box-shadow" key={movie.id} onClick={() => history.push(`/movie/${movie.id}`)}>
                 <div className="search__image-container">
                   <img className="search__image-poster" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>

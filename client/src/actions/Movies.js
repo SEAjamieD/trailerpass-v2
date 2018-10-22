@@ -1,4 +1,4 @@
-//actions
+// Movies Home actions
 export const _initialMovieFetch = (isActive, selectedCategory, selectedMovies, selectedMoviesRow2, randomMovies) => {
   return {
     type: 'INITIAL_MOVIE_FETCH',
