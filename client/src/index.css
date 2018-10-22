@@ -10,7 +10,7 @@ a {
 }
 
 /* normalize input for ios and other devices */
-input[type="text"] {
+input[type=text] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
