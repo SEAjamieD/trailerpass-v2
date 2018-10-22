@@ -68,9 +68,11 @@ class Search extends React.Component {
     const {history} = this.props;
 
     return(
-      <div>
-      <BackButton />
-      <SearchDiv>
+      <React.Fragment>
+
+        <BackButton />
+
+        <SearchDiv>
 
         <SearchFormContainer>
           <form
@@ -89,7 +91,7 @@ class Search extends React.Component {
 
         <div className="search__results-container">
           {store.getState().search.results.map((movie) => (
-            <div className="search__movie deep-box-shadow" key={movie.id} onClick={() => history.push(`/movie/${movie.id}`)}>
+            <div className="search__movie" key={movie.id} onClick={() => history.push(`/movie/${movie.id}`)}>
                 <div className="search__image-container">
                   <img className="search__image-poster" src={'https://image.tmdb.org/t/p/w200/' +  movie.poster_path} alt="movie poster"/>
                 </div>
@@ -103,7 +105,7 @@ class Search extends React.Component {
 
       </SearchDiv>
 
-      </div>
+    </React.Fragment>
     );
   }
 }

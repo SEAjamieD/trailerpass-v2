@@ -20,7 +20,7 @@ const BackArrowDiv = styled.div`
   animation: .5s ${fadeInAnimation};
   `;
 
-class Backbutton extends React.Component {
+class BackbuttonOne extends React.Component {
   render() {
     const { history } = this.props;
     return (
@@ -31,4 +31,4 @@ class Backbutton extends React.Component {
   }
 }
 
-export default withRouter(Backbutton);
+export default withRouter(BackbuttonOne);
