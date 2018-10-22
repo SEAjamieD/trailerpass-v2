@@ -29,15 +29,36 @@ const MenuBar = styled.div`
 
 const MenuSlideout = styled.div`
   position: absolute;
-  top: 50px;
+  top: 0;
   left: 0;
   width: 50%;
   height: 100vh;
   background: white;
-  border: 1px solid red;
-  transform: translateX(-50%);
-  .menu-open {
-    transform: translateX(0%);
+  transform: ${props => props.isOpen === true ? 'translateX(0%)' : 'translateX(-101%)' };
+  transition: transform .25s;
+`;
+
+const CloseDiv = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 50px;
+  width: 50px;
+  .x1 {
+    margin-top: 45%;
+    margin-left: 25%;
+    width: 60%;
+    height: 4px;
+    background: #333;
+    transform: rotate(45deg);
+  }
+  .x2 {
+    margin-top: -8%;
+    margin-left: 25%;
+    width: 60%;
+    height: 4px;
+    background: #333;
+    transform: rotate(-45deg);
   }
 `;
 
@@ -45,32 +66,37 @@ class Menu extends React.Component {
   constructor() {
     super();
     this.state = {
-      isOpen: "closed"
+      isOpen: false
     }
   }
 
   toggleMenu = () => {
-    console.log("clicked")
-    if (this.state.isOpen === "closed") {
-      this.setState({isOpen: "open"})
+    if (this.state.isOpen === true) {
+      this.setState({isOpen: false})
     } else {
-      this.setState({isOpen: "closed"})
+      this.setState({isOpen: true})
     }
   }
 
   render() {
     const { isOpen } = this.state;
     return (
-      <React.Fragment>
+      <div>
         <MenuDiv
-        className={`menu-${isOpen}`}
         onClick={this.toggleMenu}
         >
           <MenuBar />
         </MenuDiv>
-        <MenuSlideout>
+        <MenuSlideout
+          isOpen={isOpen}>
+          <CloseDiv
+          onClick={this.toggleMenu}
+          >
+            <div className="x1"></div>
+            <div className="x2"></div>
+          </CloseDiv>
         </MenuSlideout>
-      </React.Fragment>
+      </div>
     );
   }
 }
