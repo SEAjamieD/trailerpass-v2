@@ -10,6 +10,7 @@ const MenuDiv = styled.div`
   top: 5px;
   height: 50px;
   width: 50px;
+  z-index: 9999;
 `;
 
 const MenuBar = styled.div`
@@ -36,6 +37,7 @@ const MenuSlideout = styled.div`
   background: white;
   transform: ${props => props.isOpen === true ? 'translateX(0%)' : 'translateX(-101%)' };
   transition: transform .25s;
+  z-index: 9999;
   ul {
     padding-top: 60px;
     text-align: center;

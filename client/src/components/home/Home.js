@@ -10,6 +10,7 @@ import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 
 // import components
+import Menu from '../menu/Menu';
 import Loader from '../../common/loader/Loader';
 import HeroSlider from '../heroSlider/HeroSlider';
 import SelectedMovies from '../selectedMovies/SelectedMovies';
@@ -51,6 +52,8 @@ class Home extends React.Component {
 
     return (
       <HomeDiv>
+
+        <Menu />
 
         <div className="search__button full-flex"
           onClick={() => history.push(`/search`)}>
