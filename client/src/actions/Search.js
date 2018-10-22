@@ -5,3 +5,10 @@ export const _searchMovie = (results) => {
     results
   }
 }
+
+export const _clearSearch = () => {
+  return {
+    type: 'CLEAR_SEARCH',
+    results: []
+  }
+}

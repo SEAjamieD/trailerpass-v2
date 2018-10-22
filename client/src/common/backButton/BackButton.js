@@ -24,7 +24,9 @@ const BackArrowDiv = styled.div`
 class Backbutton extends React.Component {
   render() {
     return (
-      <BackArrowDiv>
+      <BackArrowDiv
+        onClick={this.props.clearSearch}
+        >
         <Link to="/" className="visited">
           <div className="arrow left-arrow"></div>
         </Link>

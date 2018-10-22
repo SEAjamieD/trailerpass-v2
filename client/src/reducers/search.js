@@ -11,6 +11,11 @@ export default (state = initialState, action) => {
         ...state,
         results: action.results
       }
+    case 'CLEAR_SEARCH':
+      return {
+        ...state,
+        results: action.results
+      }
     default:
       return state;
   }

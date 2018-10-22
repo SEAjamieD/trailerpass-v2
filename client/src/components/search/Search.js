@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import store from '../../store';
 
-import { _searchMovie } from '../../actions/Search';
+import { _searchMovie, _clearSearch } from '../../actions/Search';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 import BackButton from '../../common/backButton/BackButton';
@@ -36,16 +36,19 @@ class Search extends React.Component {
 
   searchMovie = () => {
     if (this.searchInput.value.length > 1) {
-    this.setState({loading: true})
     fetch(`/api/search/${this.searchInput.value}`)
       .then(res => res.json())
       .then((data) => {
-        console.log(data);
         store.dispatch(_searchMovie(data.results))
       })
     } else if (this.searchInput.value.length < 1) {
         store.dispatch(_searchMovie([]));
     }
+  }
+
+  clearSearch = () => {
+    console.log('party')
+    store.dispatch( _clearSearch() )
   }
 
 
@@ -70,7 +73,7 @@ class Search extends React.Component {
     return(
       <React.Fragment>
 
-        <BackButton />
+        <BackButton clearSearch={this.clearSearch}/>
 
         <SearchDiv>
 
