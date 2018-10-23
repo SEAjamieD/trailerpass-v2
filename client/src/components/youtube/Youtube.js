@@ -23,7 +23,7 @@ class Youtube extends React.Component {
 
     return (
       <YoutubeWrapper isHidden={this.props.isHidden}>
-        <iframe title={movieTitle} className="youtube-player deep-box-shadow" width="500" height="294" src={youTubeVid} frameBorder="0" allow='autoplay' allowFullScreen></iframe>
+        <iframe title={movieTitle} className="youtube-player deep-box-shadow" width="500" height="294" src={youTubeVid} frameBorder="0" allowAutoPlay allowFullScreen></iframe>
       </YoutubeWrapper>
     );
   }
