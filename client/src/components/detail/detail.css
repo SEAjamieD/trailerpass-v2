@@ -11,27 +11,18 @@
   max-height: calc(850px/1.77);
 }
 
-.details__lower-info {
-  position: relative;
-  width: 90%;
-  margin: 0 auto;
-  min-height: 30vh;
-  color: #333;
-}
-
-.details__title {
-  font-size: 2.5rem;
-  color: #333;
-  text-align: left;
-  padding: 12px 0;
-}
-
 .details__release-date {
   padding: 5px 0 10px;
 }
 
 .details__overview {
+  font-size: .9em;
   line-height: 1.2;
+  text-align: justify;
+  text-align-last: center;
+  width: 90%;
+  margin: 0 auto;
+  color: #333;
 }
 
 .url-copy-container {

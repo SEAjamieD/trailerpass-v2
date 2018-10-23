@@ -11,9 +11,9 @@ const revealAnimation = keyframes`
 
 const RevealDiv = styled.div`
   position: absolute;
-  height: 50%;
+  height: 100%;
   width: 0%;
-  right: 30%;
+  right: 0%;
   background: #fff;
   -webkit-transform: translate3d(0,0,0);
   z-index: 10;
@@ -41,12 +41,10 @@ class Stars extends React.Component {
 
 
     return (
-      <div className="stars__container">
           <div className="stars__row">
             <RevealDiv></RevealDiv>
-          {stars}
+            {stars}
           </div>
-      </div>
     );
   }
 }

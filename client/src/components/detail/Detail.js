@@ -16,6 +16,22 @@ const fadeInAnimation = keyframes`${fadeIn}`;
 
 const DetailsDiv = styled.div`
   animation: .5s ${fadeInAnimation};
+  .details__lower-info {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    min-height: 30vh;
+    color: #333;
+  }
+  .details__title {
+    font-size: 1.3em;
+    width: 60%;
+    text-transform: uppercase
+    color: #333;
+    text-align: center;
+    margin: 0 auto;
+    padding: 12px 0;
+  }
   `;
 
 const CastDetails = styled.div`
@@ -105,8 +121,8 @@ class Details extends React.Component {
       <DetailsDiv>
         <div className="details__lower-info">
           <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
-          <p className="details__release-date">Release Date: {movie.release_date}</p>
           <Stars rating={movie.vote_average}/>
+          <p className="details__release-date">Release Date: {movie.release_date}</p>
           <p className="details__overview">{movie.overview}</p>
 
           <div className="url-copy-container">

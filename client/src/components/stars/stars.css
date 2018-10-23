@@ -1,10 +1,8 @@
-.stars__container {
-  position: relative;
-  padding: 10px 0;
-}
-
 .stars__row {
+  position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   color: red;
 }
 
