@@ -47,7 +47,7 @@ class HeroSlider extends React.Component {
         {randomMovies.map((randomMovie, i) => (
           <div key={i} className="hero-container" onClick={() => history.push(`/movie/${randomMovie.id}`)}>
             <h2 className="list__random-title text-shadow-dark">{randomMovie.title}</h2>
-            <img className="list__random-image deep-box-shadow" src={'https://image.tmdb.org/t/p/w500/' + randomMovie.backdrop_path} alt="movie backdrop"/>
+            <img className="list__random-image deep-box-shadow" src={'https://image.tmdb.org/t/p/w780/' + randomMovie.backdrop_path} alt="movie backdrop"/>
           </div>
         ))}
       </Slider>

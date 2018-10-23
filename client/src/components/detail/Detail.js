@@ -21,7 +21,7 @@ const DetailsDiv = styled.div`
   .details__lower-info {
     position: relative;
     width: 90%;
-    margin: 0 auto;
+    margin: 40px auto 0;
     min-height: 30vh;
     color: #333;
   }
@@ -70,6 +70,28 @@ const HeroPoster = styled.div`
   height: 275px;
   border-radius: 0% 0% 60% 60% / 0% 0% 15% 15%;
   box-shadow: 0px 4px 45px -1px rgba(0,0,0,0.7);
+`;
+
+const PlayButtonDiv = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  top: 230px;
+  left: calc(50% - 37.5px);
+  box-shadow: 0px 0px 45px -1px rgba(0,0,0,0.7);
+  .play {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 26px solid red;
+    margin-left: 5px;
+  }
 `;
 
 
@@ -135,6 +157,10 @@ class Details extends React.Component {
     this.animateCopiedTrue()
   }
 
+  playTrailer = () => {
+    console.log("play trailer")
+  }
+
   render() {
     const {loading, movie, youTubeVid, cast, releaseYear, country} = this.state;
     const {history} = this.props;
@@ -158,6 +184,12 @@ class Details extends React.Component {
 
       <HeroPoster backdrop={'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path}>
       </HeroPoster>
+
+      <PlayButtonDiv
+        onClick={this.playTrailer}
+        >
+        <div class="play"></div>
+      </PlayButtonDiv>
 
       <DetailsDiv>
         <div className="details__lower-info">
