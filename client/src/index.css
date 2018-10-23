@@ -20,6 +20,10 @@ input[type=text] {
   appearance: none;
 }
 
+.bold {
+  font-weight: bold;  
+}
+
 .full-flex {
   display: flex;
   align-items: center;

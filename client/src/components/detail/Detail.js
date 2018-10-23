@@ -33,10 +33,18 @@ const DetailsDiv = styled.div`
     padding: 12px 0;
   }
   .details__release-info {
-    display: flex;
-    justify-content: space-between;
-    width: 60%;
+    display: grid;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     margin: 0 auto;
+    text-align: center;
+    margin: 1em auto;
+    grid-column-gap: 1em;
+    grid-row-gap: 5px;
+    text-transform: capitalize;
+    font-size: .875em;
   }
   `;
 
@@ -49,6 +57,16 @@ const CastDetails = styled.div`
   background: #fff;
   box-shadow: 0 4px 6px rgba(50,50,93,.21),
               0 1px 3px rgba(0,0,0,.18);
+`;
+
+const HeroPoster = styled.div`
+  background-image: ${props => `url(${props.backdrop})`};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 400px;
+  border-radius: 0% 0% 70% 70% / 0% 0% 20% 20%;
 `;
 
 
@@ -78,6 +96,7 @@ class Details extends React.Component {
       .then((data) => {
         if (data.videos.results[0]) {
           let cast = data.credits.cast.slice(0,5);
+          console.log(data);
           this.setState({
             movie: data,
             country: data.production_countries[0].iso_3166_1,
@@ -123,18 +142,26 @@ class Details extends React.Component {
 
       <BackButton />
 
+      {/*
       <Youtube
         youTubeVid={youTubeVid}
         movieTitle={movie.original_title} />
+      */}
+
+      <HeroPoster backdrop={'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path}>
+      </HeroPoster>
 
       <DetailsDiv>
         <div className="details__lower-info">
           <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
           <Stars rating={movie.vote_average}/>
           <div className="details__release-info">
-            <p>{releaseYear}</p>
-            <p>{country}</p>
-            <p>length</p>
+            <p>year</p>
+            <p>country</p>
+            <p>runtime</p>
+            <p className="bold">{releaseYear}</p>
+            <p className="bold">{country}</p>
+            <p className="bold">{movie.runtime} min</p>
           </div>
           <p className="details__overview">{movie.overview}</p>
 
