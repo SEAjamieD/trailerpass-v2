@@ -11,10 +11,6 @@
   max-height: calc(850px/1.77);
 }
 
-.details__release-date {
-  padding: 5px 0 10px;
-}
-
 .details__overview {
   font-size: .9em;
   line-height: 1.2;

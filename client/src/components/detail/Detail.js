@@ -32,6 +32,12 @@ const DetailsDiv = styled.div`
     margin: 0 auto;
     padding: 12px 0;
   }
+  .details__release-info {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin: 0 auto;
+  }
   `;
 
 const CastDetails = styled.div`
@@ -52,6 +58,8 @@ class Details extends React.Component {
     this.state = {
       hidden: false,
       movie: [],
+      country: '',
+      releaseYear: '',
       youTubeVid: '',
       pageUrl: '',
       cast: []
@@ -70,9 +78,10 @@ class Details extends React.Component {
       .then((data) => {
         if (data.videos.results[0]) {
           let cast = data.credits.cast.slice(0,5);
-
           this.setState({
             movie: data,
+            country: data.production_countries[0].iso_3166_1,
+            releaseYear: data.release_date.slice(0,4),
             youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0`,
             pageUrl: window.location.href,
             cast: cast,
@@ -100,7 +109,7 @@ class Details extends React.Component {
   }
 
   render() {
-    const {loading, movie, youTubeVid, cast} = this.state;
+    const {loading, movie, youTubeVid, cast, releaseYear, country} = this.state;
     const {history} = this.props;
 
     if (loading === true) {
@@ -122,7 +131,11 @@ class Details extends React.Component {
         <div className="details__lower-info">
           <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
           <Stars rating={movie.vote_average}/>
-          <p className="details__release-date">Release Date: {movie.release_date}</p>
+          <div className="details__release-info">
+            <p>{releaseYear}</p>
+            <p>{country}</p>
+            <p>length</p>
+          </div>
           <p className="details__overview">{movie.overview}</p>
 
           <div className="url-copy-container">
