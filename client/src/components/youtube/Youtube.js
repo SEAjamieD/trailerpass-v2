@@ -11,6 +11,9 @@ const YoutubeWrapper = styled.div`
   margin-bottom: 60px;
   height: 0;
   animation: .7s ${fadeInAnimation};
+  position: absolute;
+  top: 0;
+  display: ${props => props.isHidden ? props.isHidden : 'none'}
 `;
 
 class Youtube extends React.Component {
@@ -19,8 +22,8 @@ class Youtube extends React.Component {
     const { youTubeVid, movieTitle } = this.props;
 
     return (
-      <YoutubeWrapper>
-        <iframe title={movieTitle} className="youtube-player deep-box-shadow" width="500" height="294" src={youTubeVid} frameBorder="0"></iframe>
+      <YoutubeWrapper isHidden={this.props.isHidden}>
+        <iframe title={movieTitle} className="youtube-player deep-box-shadow" width="500" height="294" src={youTubeVid} frameBorder="0" allow='autoplay' allowFullScreen></iframe>
       </YoutubeWrapper>
     );
   }

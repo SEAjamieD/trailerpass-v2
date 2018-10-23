@@ -100,6 +100,7 @@ class Details extends React.Component {
     super();
     this.state = {
       hidden: false,
+      isHidden: 'none',
       movie: [],
       country: '',
       releaseYear: '',
@@ -131,7 +132,7 @@ class Details extends React.Component {
             movie: data,
             country: data.production_countries[0].iso_3166_1,
             releaseYear: data.release_date.slice(0,4),
-            youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0`,
+            youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0&autoplay=1`,
             pageUrl: window.location.href,
             cast: cast,
             loading: false
@@ -157,8 +158,9 @@ class Details extends React.Component {
     this.animateCopiedTrue()
   }
 
-  playTrailer = () => {
+  playTrailer = (youTubeVid, movie) => {
     console.log("play trailer")
+    this.setState({isHidden: 'grid'})
   }
 
   render() {
@@ -170,6 +172,8 @@ class Details extends React.Component {
         <Loader />
       );
     }
+
+
 
     return (
       <div>
@@ -186,10 +190,12 @@ class Details extends React.Component {
       </HeroPoster>
 
       <PlayButtonDiv
-        onClick={this.playTrailer}
+        onClick={() => this.playTrailer(youTubeVid, movie)}
         >
-        <div class="play"></div>
+        <div className="play"></div>
       </PlayButtonDiv>
+
+      <Youtube youTubeVid={youTubeVid} movieTitle={movie.original_title} isHidden={this.state.isHidden} />
 
       <DetailsDiv>
         <div className="details__lower-info">
