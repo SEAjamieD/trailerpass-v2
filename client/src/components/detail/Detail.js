@@ -1,5 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import store from '../../store';
+import { _setHeaderColor } from '../../actions/Styles';
 import styled, { keyframes } from 'styled-components';
 import anime from 'animejs';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -29,7 +31,7 @@ const DetailsDiv = styled.div`
     text-transform: uppercase
     color: #333;
     text-align: center;
-    margin: 0 auto;
+    margin: 1em auto 0;
     padding: 12px 0;
   }
   .details__release-info {
@@ -65,8 +67,9 @@ const HeroPoster = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  height: 400px;
-  border-radius: 0% 0% 70% 70% / 0% 0% 20% 20%;
+  height: 275px;
+  border-radius: 0% 0% 60% 60% / 0% 0% 15% 15%;
+  box-shadow: 0px 4px 45px -1px rgba(0,0,0,0.7);
 `;
 
 
@@ -85,7 +88,12 @@ class Details extends React.Component {
   }
 
   componentDidMount() {
+    store.dispatch(_setHeaderColor('transparent', '#fff', '1.4em'));
     this.fetchMovieDetails();
+  }
+
+  componentWillUnmount() {
+    store.dispatch(_setHeaderColor('#fff', '#5439FF', '2.4em'));
   }
 
   fetchMovieDetails = () => {
@@ -148,7 +156,7 @@ class Details extends React.Component {
         movieTitle={movie.original_title} />
       */}
 
-      <HeroPoster backdrop={'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path}>
+      <HeroPoster backdrop={'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path}>
       </HeroPoster>
 
       <DetailsDiv>

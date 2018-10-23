@@ -2,12 +2,32 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import store from './store';
 import { _initialMovieFetch } from './actions/Movies';
-
+import styled from 'styled-components';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
 import Detail from './components/detail/Detail';
 import Person from './components/person/Person';
 import './App.css';
+
+
+const HeaderDiv = styled.div`
+  box-sizing:border-box;
+  position: fixed;
+  width: 100%;
+  max-width: 850px;
+  height: 60px;
+  background: ${props => props.headerColor ? props.headerColor : '#fff' };
+  color: ${props => props.headerText ? props.headerText : '#5439FF' };
+  z-index: 500;
+  h1 {
+    margin-top: 15px;
+    font-size: ${props => props.textSize ? props.textSize : '2.4em' };
+    font-family: voltage, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+  }
+`;
 
 class App extends Component {
 
@@ -33,9 +53,13 @@ class App extends Component {
     return (
       <div className="app">
 
-        <div className="header">
+        <HeaderDiv
+          headerColor={store.getState().styles.headerColor}
+          headerText={store.getState().styles.headerText}
+          textSize={store.getState().styles.textSize}
+          >
           <h1 className="text-shadow-dark">trailerPass</h1>
-        </div>
+        </HeaderDiv>
 
 
 
