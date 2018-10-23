@@ -4,10 +4,11 @@ import store from '../../store';
 import { _setHeaderColor } from '../../actions/Styles';
 import styled, { keyframes } from 'styled-components';
 import anime from 'animejs';
+import YouTube from 'react-youtube';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ParticleEffectButton from 'react-particle-effect-button';
 import { fadeIn } from 'react-animations';
-import Youtube from '../youtube/Youtube';
+import ReactYoutube from '../youtube/ReactYoutube';
 import Stars from '../stars/Stars';
 import BackButton from '../../common/backButton/BackButton';
 import Loader from '../../common/loader/Loader';
@@ -94,6 +95,18 @@ const PlayButtonDiv = styled.div`
   }
 `;
 
+const YoutubeWrapper = styled.div`
+  display: grid;
+  position: relative;
+  padding-bottom: 56.25%;
+  margin-bottom: 60px;
+  height: 0;
+  animation: .7s ${fadeInAnimation};
+  position: absolute;
+  top: 0;
+  display: ${props => props.isHidden ? props.isHidden : 'none'}
+`;
+
 
 class Details extends React.Component {
   constructor() {
@@ -133,6 +146,7 @@ class Details extends React.Component {
             country: data.production_countries[0].iso_3166_1,
             releaseYear: data.release_date.slice(0,4),
             youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0&autoplay=1`,
+            reactYoutube: data.videos.results[0].key,
             pageUrl: window.location.href,
             cast: cast,
             loading: false
@@ -158,14 +172,17 @@ class Details extends React.Component {
     this.animateCopiedTrue()
   }
 
-  playTrailer = (youTubeVid, movie) => {
-    console.log("play trailer")
-    this.setState({isHidden: 'grid'})
-  }
-
   render() {
-    const {loading, movie, youTubeVid, cast, releaseYear, country} = this.state;
+    const {loading, movie, youTubeVid, cast, releaseYear, country, reactYoutube} = this.state;
     const {history} = this.props;
+
+    const opts = {
+      height: '500',
+      width: '294',
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
 
     if (loading === true) {
       return (
@@ -190,12 +207,20 @@ class Details extends React.Component {
       </HeroPoster>
 
       <PlayButtonDiv
-        onClick={() => this.playTrailer(youTubeVid, movie)}
+        onClick={this.playTrailer}
         >
         <div className="play"></div>
       </PlayButtonDiv>
 
-      <Youtube youTubeVid={youTubeVid} movieTitle={movie.original_title} isHidden={this.state.isHidden} />
+      <YoutubeWrapper isHidden={this.state.isHidden}>
+        <YouTube
+          id="react-youtube"
+          videoId={this.state.reactYoutube}
+          className='youtube-player'
+          opts={opts}
+          onReady={this._onReady}
+        />
+      </YoutubeWrapper>
 
       <DetailsDiv>
         <div className="details__lower-info">
@@ -268,6 +293,17 @@ class Details extends React.Component {
 
       </div>
     );
+  }
+
+  _onReady(event) {
+  // access to player in all event handlers via event.target
+  event.target.pauseVideo();
+  }
+
+  playTrailer = () => {
+    console.log("play trailer")
+    this.setState({isHidden: 'grid'})
+    console.log(YouTube)
   }
 
 
