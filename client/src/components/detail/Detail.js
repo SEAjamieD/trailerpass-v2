@@ -96,11 +96,11 @@ const PlayButtonDiv = styled.div`
 `;
 
 const YoutubeWrapper = styled.div`
-  display: grid;
-  position: relative;
+  position: absolute;
   padding-bottom: 56.25%;
   margin-bottom: 60px;
-  height: 0;
+  height: 100vh;
+  background: black;
   animation: .7s ${fadeInAnimation};
   position: absolute;
   top: 0;
@@ -119,7 +119,8 @@ class Details extends React.Component {
       releaseYear: '',
       youTubeVid: '',
       pageUrl: '',
-      cast: []
+      cast: [],
+      videoControl: null
     }
   }
 
@@ -179,6 +180,7 @@ class Details extends React.Component {
     const opts = {
       height: '500',
       width: '294',
+      allowFullScreen: 'allowFullScreen',
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 1
       }
@@ -197,12 +199,6 @@ class Details extends React.Component {
 
       <BackButton />
 
-      {/*
-      <Youtube
-        youTubeVid={youTubeVid}
-        movieTitle={movie.original_title} />
-      */}
-
       <HeroPoster backdrop={'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path}>
       </HeroPoster>
 
@@ -212,15 +208,17 @@ class Details extends React.Component {
         <div className="play"></div>
       </PlayButtonDiv>
 
-      <YoutubeWrapper isHidden={this.state.isHidden}>
-        <YouTube
-          id="react-youtube"
-          videoId={this.state.reactYoutube}
-          className='youtube-player'
-          opts={opts}
-          onReady={this._onReady}
-        />
-      </YoutubeWrapper>
+      { reactYoutube &&
+        <YoutubeWrapper isHidden={this.state.isHidden}>
+          <YouTube
+            id="react-youtube"
+            videoId={reactYoutube}
+            className='youtube-player'
+            opts={opts}
+            onReady={this._onReady}
+            />
+        </YoutubeWrapper>
+      }
 
       <DetailsDiv>
         <div className="details__lower-info">
@@ -295,15 +293,23 @@ class Details extends React.Component {
     );
   }
 
-  _onReady(event) {
+  _onReady = (event) => {
   // access to player in all event handlers via event.target
-  event.target.pauseVideo();
+    event.target.pauseVideo();
+    this.setState({videoControl: event.target})  // store the videoplayer for access to later
   }
 
   playTrailer = () => {
-    console.log("play trailer")
-    this.setState({isHidden: 'grid'})
-    console.log(YouTube)
+    const { videoControl } = this.state;
+    if ( videoControl ) {
+      this.setState({isHidden: 'grid'})
+      const tube = document.getElementById('react-youtube');
+      var requestFullScreen = tube.requestFullScreen || tube.mozRequestFullScreen || tube.webkitRequestFullScreen;
+       if (requestFullScreen) {
+         requestFullScreen.bind(tube)();
+       }
+      videoControl.playVideo();
+    }
   }
 
 

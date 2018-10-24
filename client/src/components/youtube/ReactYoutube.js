@@ -47,6 +47,7 @@ class ReactYoutube extends React.Component {
 
   _onReady(event) {
   // access to player in all event handlers via event.target
+
   event.target.pauseVideo();
   // event.target.playVideo();//won't work on mobile
   // const video = document.getElementById('react-youtube');  // this needs a ref or something maybe
