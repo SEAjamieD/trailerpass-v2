@@ -95,16 +95,42 @@ const PlayButtonDiv = styled.div`
 `;
 
 const YoutubeWrapper = styled.div`
-  position: absolute;
-  padding-bottom: 56.25%;
-  margin-bottom: 60px;
+  display: ${props => props.isHidden ? props.isHidden : 'none'}
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   height: 100vh;
+  width: 100vw;
   background: black;
   animation: .7s ${fadeInAnimation};
+  z-index: 9990;
+`;
+
+const CloseDiv = styled.div`
   position: absolute;
-  top: 0;
-  z-index: 20;
-  display: ${props => props.isHidden ? props.isHidden : 'none'}
+  z-index: 9999
+  right: 10px;
+  top: 10px;
+  height: 50px;
+  width: 50px;
+  .x1 {
+    margin-top: 45%;
+    margin-left: 25%;
+    width: 60%;
+    height: 4px;
+    background: #fff;
+    transform: rotate(45deg);
+  }
+  .x2 {
+    margin-top: -8%;
+    margin-left: 25%;
+    width: 60%;
+    height: 4px;
+    background: #fff;
+    transform: rotate(-45deg);
+  }
 `;
 
 
@@ -212,6 +238,14 @@ class Details extends React.Component {
 
       { reactYoutube &&
         <YoutubeWrapper isHidden={this.state.isHidden}>
+
+          <CloseDiv
+          onClick={this._onEnd}
+          >
+            <div className="x1"></div>
+            <div className="x2"></div>
+          </CloseDiv>
+
           <YouTube
             id="react-youtube"
             videoId={reactYoutube}
