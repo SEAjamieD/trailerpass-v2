@@ -37,7 +37,6 @@ const DetailsDiv = styled.div`
   }
   .details__release-info {
     display: grid;
-    display: grid;
     height: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -104,6 +103,7 @@ const YoutubeWrapper = styled.div`
   animation: .7s ${fadeInAnimation};
   position: absolute;
   top: 0;
+  z-index: 20;
   display: ${props => props.isHidden ? props.isHidden : 'none'}
 `;
 
@@ -120,7 +120,8 @@ class Details extends React.Component {
       youTubeVid: '',
       pageUrl: '',
       cast: [],
-      videoControl: null
+      videoControl: null,
+      reactYoutube: null
     }
   }
 
@@ -182,7 +183,8 @@ class Details extends React.Component {
       width: '294',
       allowFullScreen: 'allowFullScreen',
       playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
+        autoplay: 1,
+        modestbranding: 1,
       }
     };
 
@@ -216,6 +218,7 @@ class Details extends React.Component {
             className='youtube-player'
             opts={opts}
             onReady={this._onReady}
+            onEnd={this._onEnd}
             />
         </YoutubeWrapper>
       }
@@ -299,15 +302,24 @@ class Details extends React.Component {
     this.setState({videoControl: event.target})  // store the videoplayer for access to later
   }
 
+  _onEnd = (event) => {
+    let exitFullscreen = document.exitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen || document.webkitExitFullscreen;
+    if (exitFullscreen) {
+      exitFullscreen.bind(document)();
+    }
+    this.setState({isHidden: 'none'})
+  }
+
   playTrailer = () => {
     const { videoControl } = this.state;
     if ( videoControl ) {
       this.setState({isHidden: 'grid'})
       const tube = document.getElementById('react-youtube');
-      var requestFullScreen = tube.requestFullScreen || tube.mozRequestFullScreen || tube.webkitRequestFullScreen;
+      let requestFullScreen = tube.requestFullScreen || tube.mozRequestFullScreen || tube.webkitRequestFullScreen;
        if (requestFullScreen) {
          requestFullScreen.bind(tube)();
        }
+      videoControl.seekTo(0);
       videoControl.playVideo();
     }
   }
