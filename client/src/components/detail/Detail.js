@@ -8,7 +8,6 @@ import YouTube from 'react-youtube';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ParticleEffectButton from 'react-particle-effect-button';
 import { fadeIn } from 'react-animations';
-import ReactYoutube from '../youtube/ReactYoutube';
 import Stars from '../stars/Stars';
 import BackButton from '../../common/backButton/BackButton';
 import Loader from '../../common/loader/Loader';
@@ -18,7 +17,6 @@ import './detail.css';
 const fadeInAnimation = keyframes`${fadeIn}`;
 
 const DetailsDiv = styled.div`
-  animation: .5s ${fadeInAnimation};
   .details__lower-info {
     position: relative;
     width: 90%;
@@ -133,6 +131,10 @@ const CloseDiv = styled.div`
   }
 `;
 
+const FadeIn = styled.div`
+  animation: .5s ${fadeInAnimation};
+`;
+
 
 class Details extends React.Component {
   constructor() {
@@ -143,7 +145,6 @@ class Details extends React.Component {
       movie: [],
       country: '',
       releaseYear: '',
-      youTubeVid: '',
       pageUrl: '',
       cast: [],
       videoControl: null,
@@ -173,7 +174,6 @@ class Details extends React.Component {
             movie: data,
             country: data.production_countries[0].iso_3166_1,
             releaseYear: data.release_date.slice(0,4),
-            youTubeVid: `https://www.youtube.com/embed/${data.videos.results[0].key}?&theme=dark&autohide=2&showinfo=0&autoplay=1`,
             reactYoutube: data.videos.results[0].key,
             pageUrl: window.location.href,
             cast: cast,
@@ -201,7 +201,7 @@ class Details extends React.Component {
   }
 
   render() {
-    const {loading, movie, youTubeVid, cast, releaseYear, country, reactYoutube} = this.state;
+    const {loading, movie, cast, releaseYear, country, reactYoutube} = this.state;
     const {history} = this.props;
 
     const opts = {
@@ -223,110 +223,114 @@ class Details extends React.Component {
 
 
     return (
-      <div>
+      <React.Fragment>
 
-      <BackButton />
+        <BackButton />
 
-      <HeroPoster backdrop={'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path}>
-      </HeroPoster>
+        <FadeIn>
 
-      <PlayButtonDiv
-        onClick={this.playTrailer}
-        >
-        <div className="play"></div>
-      </PlayButtonDiv>
+          <HeroPoster backdrop={'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path}>
+          </HeroPoster>
 
-      { reactYoutube &&
-        <YoutubeWrapper isHidden={this.state.isHidden}>
+          <PlayButtonDiv
+            onClick={this.playTrailer}
+            >
+            <div className="play"></div>
+          </PlayButtonDiv>
 
-          <CloseDiv
-          onClick={this._onEnd}
-          >
-            <div className="x1"></div>
-            <div className="x2"></div>
-          </CloseDiv>
+          { reactYoutube &&
+            <YoutubeWrapper isHidden={this.state.isHidden}>
 
-          <YouTube
-            id="react-youtube"
-            videoId={reactYoutube}
-            className='youtube-player'
-            opts={opts}
-            onReady={this._onReady}
-            onEnd={this._onEnd}
-            />
-        </YoutubeWrapper>
-      }
-
-      <DetailsDiv>
-        <div className="details__lower-info">
-          <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
-          <Stars rating={movie.vote_average}/>
-          <div className="details__release-info">
-            <p>year</p>
-            <p>country</p>
-            <p>runtime</p>
-            <p className="bold">{releaseYear}</p>
-            <p className="bold">{country}</p>
-            <p className="bold">{movie.runtime} min</p>
-          </div>
-          <p className="details__overview">{movie.overview}</p>
-
-          <div className="url-copy-container">
-            <ParticleEffectButton
-              color='#00AFAB'
-              hidden={this.state.hidden}
-              oscillationCoefficient={30}
+              <CloseDiv
+              onClick={this._onEnd}
               >
+                <div className="x1"></div>
+                <div className="x2"></div>
+              </CloseDiv>
 
-              <CopyToClipboard
-                text={this.state.pageUrl}
-                onCopy={this.disappear}
-                >
+              <YouTube
+                id="react-youtube"
+                videoId={reactYoutube}
+                className='youtube-player'
+                opts={opts}
+                onReady={this._onReady}
+                onEnd={this._onEnd}
+                />
+            </YoutubeWrapper>
+          }
+
+          <DetailsDiv>
+            <div className="details__lower-info">
+              <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
+              <Stars rating={movie.vote_average}/>
+              <div className="details__release-info">
+                <p>year</p>
+                <p>country</p>
+                <p>runtime</p>
+                <p className="bold">{releaseYear}</p>
+                <p className="bold">{country}</p>
+                <p className="bold">{movie.runtime} min</p>
+              </div>
+              <p className="details__overview">{movie.overview}</p>
+
+              <div className="url-copy-container">
+                <ParticleEffectButton
+                  color='#00AFAB'
+                  hidden={this.state.hidden}
+                  oscillationCoefficient={30}
+                  >
+
+                  <CopyToClipboard
+                    text={this.state.pageUrl}
+                    onCopy={this.disappear}
+                    >
+                    <div
+                    className="url-copy-button full-flex"
+                    ref={el => this.copyButton = el}
+                    >
+                      <p
+                      ref={el => this.copyButtonText = el}
+                      >Copy Url</p>
+
+                    </div>
+                  </CopyToClipboard>
+
+                </ParticleEffectButton>
                 <div
-                className="url-copy-button full-flex"
-                ref={el => this.copyButton = el}
-                >
-                  <p
-                  ref={el => this.copyButtonText = el}
-                  >Copy Url</p>
-
+                  className="copy-checkmark full-flex"
+                  ref={el => this.checkMark = el}
+                  >
+                  <p><span>&#x2713;</span> copied</p>
                 </div>
-              </CopyToClipboard>
+              </div>
 
-            </ParticleEffectButton>
-            <div
-              className="copy-checkmark full-flex"
-              ref={el => this.checkMark = el}
-              >
-              <p><span>&#x2713;</span> copied</p>
+              <div>
+                {cast.map((actor) => (
+                  <CastDetails key={actor.id} onClick={() => history.push(`/person/${actor.id}`)} >
+                    <div className="profile-container">
+                      <img src={'https://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
+                    </div>
+                    <div className="profile-details">
+                      <p className="actor-name">{actor.name}</p>
+                      <p>as</p>
+                      <p className="actor-character">{actor.character}</p>
+                    </div>
+                  </CastDetails>
+                ))}
+
+              </div>
+
+
             </div>
-          </div>
-
-          <div>
-            {cast.map((actor) => (
-              <CastDetails key={actor.id} onClick={() => history.push(`/person/${actor.id}`)} >
-                <div className="profile-container">
-                  <img src={'https://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
-                </div>
-                <div className="profile-details">
-                  <p className="actor-name">{actor.name}</p>
-                  <p>as</p>
-                  <p className="actor-character">{actor.character}</p>
-                </div>
-              </CastDetails>
-            ))}
-
-          </div>
 
 
-        </div>
+          </DetailsDiv>
 
+          </FadeIn>
 
-        <PoweredBy />
+          <PoweredBy />
 
-      </DetailsDiv>
-
-      </div>
+      </React.Fragment>
     );
   }
 
