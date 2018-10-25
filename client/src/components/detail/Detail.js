@@ -169,10 +169,11 @@ class Details extends React.Component {
       .then((data) => {
         if (data.videos.results[0]) {
           let cast = data.credits.cast.slice(0,5);
+          let country = data.production_countries.length > 0 ? data.production_countries[0].iso_3166_1 : 'unlisted';
           console.log(data);
           this.setState({
             movie: data,
-            country: data.production_countries[0].iso_3166_1,
+            country: country,
             releaseYear: data.release_date.slice(0,4),
             reactYoutube: data.videos.results[0].key,
             pageUrl: window.location.href,
@@ -216,7 +217,10 @@ class Details extends React.Component {
 
     if (loading === true) {
       return (
-        <Loader />
+        <React.Fragment>
+          <BackButton />
+          <Loader />
+        </React.Fragment>
       );
     }
 
