@@ -7,6 +7,7 @@ import anime from 'animejs';
 import YouTube from 'react-youtube';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ParticleEffectButton from 'react-particle-effect-button';
+import ShareIcon from './ShareButton';
 import { fadeIn } from 'react-animations';
 import Stars from '../stars/Stars';
 import BackButton from '../../common/backButton/BackButton';
@@ -215,6 +216,11 @@ class Details extends React.Component {
       }
     };
 
+    const shareStyle = {
+      position: 'absolute',
+      right: '50px',
+    }
+
     if (loading === true) {
       return (
         <React.Fragment>
@@ -263,6 +269,47 @@ class Details extends React.Component {
             </YoutubeWrapper>
           }
 
+          <ShareIcon
+            width='30px'
+            fill='black'
+            style={shareStyle}
+            />
+
+          <div className="url-copy-container">
+          {/*  <ParticleEffectButton
+              color='#00AFAB'
+              hidden={this.state.hidden}
+              oscillationCoefficient={30}
+              > */}
+
+              <CopyToClipboard
+                text={this.state.pageUrl}
+                onCopy={this.disappear}
+                >
+
+
+                <div
+                className="url-copy-button full-flex"
+                ref={el => this.copyButton = el}
+                >
+
+                  <p
+                  ref={el => this.copyButtonText = el}
+                  >Copy Url</p>
+
+                </div>
+              </CopyToClipboard>
+
+        {/*    </ParticleEffectButton>
+            <div
+              className="copy-checkmark full-flex"
+              ref={el => this.checkMark = el}
+              >
+              <p><span>&#x2713;</span> copied</p>
+            </div>  */}
+
+          </div>
+
           <DetailsDiv>
             <div className="details__lower-info">
               <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
@@ -276,37 +323,6 @@ class Details extends React.Component {
                 <p className="bold">{movie.runtime} min</p>
               </div>
               <p className="details__overview">{movie.overview}</p>
-
-              <div className="url-copy-container">
-                <ParticleEffectButton
-                  color='#00AFAB'
-                  hidden={this.state.hidden}
-                  oscillationCoefficient={30}
-                  >
-
-                  <CopyToClipboard
-                    text={this.state.pageUrl}
-                    onCopy={this.disappear}
-                    >
-                    <div
-                    className="url-copy-button full-flex"
-                    ref={el => this.copyButton = el}
-                    >
-                      <p
-                      ref={el => this.copyButtonText = el}
-                      >Copy Url</p>
-
-                    </div>
-                  </CopyToClipboard>
-
-                </ParticleEffectButton>
-                <div
-                  className="copy-checkmark full-flex"
-                  ref={el => this.checkMark = el}
-                  >
-                  <p><span>&#x2713;</span> copied</p>
-                </div>
-              </div>
 
               <div>
                 {cast.map((actor) => (

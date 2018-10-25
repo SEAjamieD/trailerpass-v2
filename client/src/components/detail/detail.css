@@ -26,6 +26,7 @@
   align-items: center;
   margin-top: 1.5em;
   margin-bottom: 2em;
+  border: 1px solid blue;
 }
 
 .url-copy-button {
