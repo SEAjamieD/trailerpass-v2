@@ -29,7 +29,7 @@ const FadeIn = styled.div`
   animation: .5s ${fadeInAnimation};
 `;
 
-const categories = ['Trending','In Theaters', 'Comedy', 'Action',];
+const categories = ['Trending','In Theaters', 'Coming Soon' , 'Comedy', 'Action', 'Kids'];
 
 class Home extends React.Component {
 

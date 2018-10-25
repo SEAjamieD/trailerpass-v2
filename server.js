@@ -8,8 +8,23 @@ const app = express();
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-// Put all API endpoints under here
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const today = date.getDate();
+const tomorrow = today + 1;
 
+function plus2(month) {
+  var plus2 = month + 2;
+  if (plus2 > 12) {
+    plus2 = plus2 - 12;
+  }
+  return plus2;
+}
+
+const twoMonthsOut = plus2(month);
+
+// Put all API endpoints under here
 //home screen movies list route
 
 //trending movies
@@ -30,8 +45,8 @@ app.get('/api/trending-movies', (req, res) => {
     })
 })
 
-app.get('/api/in-theaters-movies', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&page=1`)
+app.get('/api/coming-soon-movies', (req, res) => {
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-${month}-${tomorrow}&primary_release_date.lte=${year}-${twoMonthsOut}-${tomorrow}`)
     .then(response => {
       return response.json()
     .then(json => {
@@ -95,6 +110,24 @@ app.get('/api/comedy-movies', (req, res) => {
       console.log(error)
     })
 })
+
+//kids
+app.get('/api/kids-movies', (req, res) => {
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=US&sort_by=popularity.desc&certification_country=US&certification.lte=G%2CPG%2CPG13&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-6-${tomorrow}&primary_release_date.lte=${year}-${twoMonthsOut}-${tomorrow}&with_genres=10751`)
+    .then(response => {
+      return response.json()
+    .then(json => {
+      return response.ok ? json : Promise.reject(json)
+      });
+    })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
 
 // movie details route
 app.get('/api/movie/:id', (req, res) => {

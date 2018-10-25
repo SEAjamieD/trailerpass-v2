@@ -66,7 +66,13 @@ class CategorySelector extends React.Component {
   render() {
 
     const { categories, isActive } = this.props;
-    const images = ["https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=25bd4127d97a5cf6d5baf5e2563436d2", "https://images.unsplash.com/photo-1529798856831-427dfd0a1ab1?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=75d7843b7dd8889a14b2da54a97ac9a0", "https://images.unsplash.com/photo-1523678802981-959dc4f70b96?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=c67fa93d666a03efc95126aabfc42c89", "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=4fffd7a27086f313d0db6a61cd38f39a"
+    const images = [
+      "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=25bd4127d97a5cf6d5baf5e2563436d2",
+      "https://images.unsplash.com/photo-1529798856831-427dfd0a1ab1?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=75d7843b7dd8889a14b2da54a97ac9a0",
+      "https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=e3c1296804827c424a4eb6dd73e43656",
+      "https://images.unsplash.com/photo-1523678802981-959dc4f70b96?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=c67fa93d666a03efc95126aabfc42c89",
+      "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=4fffd7a27086f313d0db6a61cd38f39a",
+      "https://images.unsplash.com/photo-1513807016779-d51c0c026263?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=aa30e08850e5ab3e949daeb56d1cdf0e"
     ];
 
     return (
