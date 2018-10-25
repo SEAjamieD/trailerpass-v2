@@ -149,7 +149,8 @@ class Details extends React.Component {
       pageUrl: '',
       cast: [],
       videoControl: null,
-      reactYoutube: null
+      reactYoutube: null,
+      copied: false
     }
   }
 
@@ -191,16 +192,10 @@ class Details extends React.Component {
       })
   }
 
-  copyUrl = () => {
-    this.animateCopiedTrue()
+  onCopy = () => {
+    this.setState({copied: true})
   }
 
-  disappear = () => {
-    this.setState({
-      hidden: true
-    })
-    this.animateCopiedTrue()
-  }
 
   render() {
     const {loading, movie, cast, releaseYear, country, reactYoutube} = this.state;
@@ -269,45 +264,20 @@ class Details extends React.Component {
             </YoutubeWrapper>
           }
 
-          <ShareIcon
-            width='30px'
-            fill='black'
-            style={shareStyle}
-            />
-
           <div className="url-copy-container">
-          {/*  <ParticleEffectButton
-              color='#00AFAB'
-              hidden={this.state.hidden}
-              oscillationCoefficient={30}
-              > */}
-
               <CopyToClipboard
                 text={this.state.pageUrl}
-                onCopy={this.disappear}
+                onCopy={this.onCopy}
                 >
-
-
-                <div
-                className="url-copy-button full-flex"
-                ref={el => this.copyButton = el}
-                >
-
-                  <p
-                  ref={el => this.copyButtonText = el}
-                  >Copy Url</p>
-
-                </div>
+                <button>
+                <ShareIcon
+                  width='25px'
+                  fill='black'
+                  stroke='transparent'
+                  style={shareStyle}
+                  />
+              </button>
               </CopyToClipboard>
-
-        {/*    </ParticleEffectButton>
-            <div
-              className="copy-checkmark full-flex"
-              ref={el => this.checkMark = el}
-              >
-              <p><span>&#x2713;</span> copied</p>
-            </div>  */}
-
           </div>
 
           <DetailsDiv>
@@ -382,16 +352,6 @@ class Details extends React.Component {
     }
   }
 
-
-  animateCopiedTrue() {
-    const { checkMark } = this;
-    anime({
-      targets: checkMark,
-      opacity: [0,1],
-      delay: 1000,
-      duration: 1000
-    })
-  }
 
 }
 
