@@ -47,6 +47,9 @@ const DetailsDiv = styled.div`
     text-transform: capitalize;
     font-size: .875em;
   }
+  .actors-container {
+    margin-top: 2.5em;
+  }
   `;
 
 const CastDetails = styled.div`
@@ -322,7 +325,7 @@ class Details extends React.Component {
               </div>
               <p className="details__overview">{movie.overview}</p>
 
-              <div>
+              <div className="actors-container">
                 {cast.map((actor) => (
                   <CastDetails key={actor.id} onClick={() => history.push(`/person/${actor.id}`)} >
                     <div className="profile-container">
