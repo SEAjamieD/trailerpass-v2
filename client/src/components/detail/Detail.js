@@ -16,6 +16,30 @@ import './detail.css';
 
 const fadeInAnimation = keyframes`${fadeIn}`;
 
+const toastAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  30% {
+    transform: translateY(-70px);
+    opacity: .8;
+    box-shadow: 0px 0px 45px -1px rgba(0,0,0,0.7);
+  }
+
+  90% {
+    opacity: .8;
+    box-shadow: 0px 0px 45px -1px rgba(0,0,0,0.7);
+  }
+
+  100% {
+    transform: translateY(-70px);
+    opacity: 0;
+    visibility: hidden;
+  }
+`;
+
 const DetailsDiv = styled.div`
   .details__lower-info {
     position: relative;
@@ -163,8 +187,27 @@ const PlusSign = styled.div`
   }
 `;
 
+const Toast = styled.div`
+  visibility: ${props => props.showToast === true ? 'visible' : 'hidden'}
+  animation: ${props => props.showToast === true ? `2.5s ${toastAnimation} forwards` : ''}
+  z-index: 9995;
+  position: fixed;
+  height: 40px;
+  background: #fff;
+  color: #5439FF;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  border-radius: 10px;
+  right: 5%;
+  padding: 0px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+
 const FadeIn = styled.div`
-  animation: .5s ${fadeInAnimation};
+  animation: .5s ${fadeInAnimation} linear;
 `;
 
 
@@ -179,11 +222,12 @@ class Details extends React.Component {
       releaseYear: '',
       pageUrl: '',
       cast: [],
-      videoControl: null,
       reactYoutube: null,
+      videoControl: null,
       copied: false,
       shareIconFill: '#333',
       shareStyle: {},
+      showToast: false
     }
   }
 
@@ -229,14 +273,26 @@ class Details extends React.Component {
     this.setState({
       copied: true,
       shareIconFill: '#5439FF',
-      shareStyle: {filter: 'drop-shadow(rgb(68, 68, 221) 0px 0px 2px)'}
+      shareStyle: {filter: 'drop-shadow(rgb(68, 68, 221) 0px 0px 2px)'},
+      showToast: true
     })
   }
 
 
   render() {
-    const {loading, movie, cast, releaseYear, country, reactYoutube, copied, shareIconFill ,shareStyle} = this.state;
-    const {history} = this.props;
+    const { loading,
+            movie,
+            cast,
+            releaseYear,
+            country,
+            reactYoutube,
+            copied,
+            shareIconFill,
+            shareStyle,
+            showToast
+            } = this.state;
+
+    const { history } = this.props;
 
     const opts = {
       height: '500',
@@ -303,6 +359,10 @@ class Details extends React.Component {
                 <div className="p1"></div>
                 <div className="p2"></div>
               </PlusSign>
+
+              <Toast showToast={showToast}>
+                <p>URL Copied</p>
+              </Toast>
 
 
               <CopyToClipboard
