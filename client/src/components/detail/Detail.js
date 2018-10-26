@@ -6,7 +6,6 @@ import styled, { keyframes } from 'styled-components';
 import anime from 'animejs';
 import YouTube from 'react-youtube';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import ParticleEffectButton from 'react-particle-effect-button';
 import ShareIcon from './ShareButton';
 import { fadeIn } from 'react-animations';
 import Stars from '../stars/Stars';
@@ -135,6 +134,14 @@ const CloseDiv = styled.div`
   }
 `;
 
+const UrlCopyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 15px auto 0;
+`;
+
 const PlusSign = styled.div`
   position: relative;
   width: 20px;
@@ -174,7 +181,9 @@ class Details extends React.Component {
       cast: [],
       videoControl: null,
       reactYoutube: null,
-      copied: false
+      copied: false,
+      shareIconFill: '#333',
+      shareStyle: {},
     }
   }
 
@@ -217,12 +226,16 @@ class Details extends React.Component {
   }
 
   onCopy = () => {
-    this.setState({copied: true})
+    this.setState({
+      copied: true,
+      shareIconFill: '#5439FF',
+      shareStyle: {filter: 'drop-shadow(rgb(68, 68, 221) 0px 0px 2px)'}
+    })
   }
 
 
   render() {
-    const {loading, movie, cast, releaseYear, country, reactYoutube} = this.state;
+    const {loading, movie, cast, releaseYear, country, reactYoutube, copied, shareIconFill ,shareStyle} = this.state;
     const {history} = this.props;
 
     const opts = {
@@ -235,10 +248,6 @@ class Details extends React.Component {
       }
     };
 
-    const shareStyle = {
-      position: 'absolute',
-      right: '50px',
-    }
 
     if (loading === true) {
       return (
@@ -288,7 +297,7 @@ class Details extends React.Component {
             </YoutubeWrapper>
           }
 
-          <div className="url-copy-container">
+          <UrlCopyContainer>
 
               <PlusSign>
                 <div className="p1"></div>
@@ -302,14 +311,16 @@ class Details extends React.Component {
                 >
                 <button className="hidden-button">
                 <ShareIcon
-                  width='20px'
-                  fill='#333'
-                  stroke='transparent'
+                  className="share-icon"
                   style={shareStyle}
+                  width='20px'
+                  fill={shareIconFill}
+                  stroke='transparent'
+                  copied={copied}
                   />
                 </button>
               </CopyToClipboard>
-          </div>
+          </UrlCopyContainer>
 
           <DetailsDiv>
             <div className="details__lower-info">
