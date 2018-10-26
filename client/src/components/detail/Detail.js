@@ -22,6 +22,7 @@ import {
   PlusSign,
   Toast,
   FadeIn,
+  GenreDiv
   } from './styledComponents';
 
 
@@ -34,6 +35,7 @@ class Details extends React.Component {
       hidden: false,
       isHidden: 'none',
       movie: [],
+      genres: [],
       country: '',
       releaseYear: '',
       pageUrl: '',
@@ -62,15 +64,24 @@ class Details extends React.Component {
     fetch(`/api/movie/${match.params.id}`)
       .then(res => res.json())
       .then((data) => {
-        if (data.videos.results[0]) {
+        if (data) {
           let cast = data.credits.cast.slice(0,5);
           let country = data.production_countries.length > 0 ? data.production_countries[0].iso_3166_1 : 'unlisted';
+          let genreObject = data.genres.length > 0 ? data.genres : null ;
+          let youtubeId = data.videos.results.length > 0 ? data.videos.results[0].key : null;
+          let genres = [];
+          if (genreObject) {
+            Object.keys(genreObject).map((key,index) => {
+              return genres.push(genreObject[key].name);
+            })
+          }
           console.log(data);
           this.setState({
             movie: data,
             country: country,
+            genres: genres.join(', '),
             releaseYear: data.release_date.slice(0,4),
-            reactYoutube: data.videos.results[0].key,
+            reactYoutube: youtubeId,
             pageUrl: window.location.href,
             cast: cast,
             loading: false
@@ -99,13 +110,14 @@ class Details extends React.Component {
     const { loading,
             movie,
             cast,
+            genres,
             releaseYear,
             country,
             reactYoutube,
             copied,
             shareIconFill,
             shareStyle,
-            showToast
+            showToast,
             } = this.state;
 
     const { history } = this.props;
@@ -201,6 +213,13 @@ class Details extends React.Component {
           <DetailsDiv>
             <div className="details__lower-info">
               <h1 className="details__title text-shadow-dark">{movie.original_title}</h1>
+
+              {genres.length > 0 &&
+                <GenreDiv>
+                  <p>{genres}</p>
+                </GenreDiv>
+              }
+
               <Stars rating={movie.vote_average}/>
               <div className="details__release-info">
                 <p>year</p>

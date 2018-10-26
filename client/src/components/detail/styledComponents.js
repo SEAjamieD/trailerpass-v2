@@ -26,13 +26,16 @@ export const DetailsDiv = styled.div`
     height: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    margin: 0 auto;
     text-align: center;
     margin: 1em auto;
     grid-column-gap: 1em;
     grid-row-gap: 5px;
+    color: #939393;
     text-transform: capitalize;
     font-size: .875em;
+  }
+  .details__release-info:nth-last-child(-n + 3) {
+    color: #333;
   }
   .actors-container {
     margin-top: 2.5em;
@@ -167,6 +170,18 @@ export const Toast = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const GenreDiv = styled.div`
+  display: flex;
+  width: 80%;
+  color: #939393;
+  margin: 0 auto 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  text-align-last: center;
+  font-size: .80em;
 `;
 
 export const FadeIn = styled.div`
