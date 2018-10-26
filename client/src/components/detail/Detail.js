@@ -13,7 +13,7 @@ import './detail.css';
 
 import {
   DetailsDiv,
-  CastDetails,
+  CastSwiper,
   HeroPoster,
   PlayButtonDiv,
   YoutubeWrapper,
@@ -22,7 +22,8 @@ import {
   PlusSign,
   Toast,
   FadeIn,
-  GenreDiv
+  GenreDiv,
+  ActorsContainer
   } from './styledComponents';
 
 
@@ -65,7 +66,7 @@ class Details extends React.Component {
       .then(res => res.json())
       .then((data) => {
         if (data) {
-          let cast = data.credits.cast.slice(0,5);
+          let cast = data.credits.cast.slice(0,10);
           let country = data.production_countries.length > 0 ? data.production_countries[0].iso_3166_1 : 'unlisted';
           let genreObject = data.genres.length > 0 ? data.genres : null ;
           let youtubeId = data.videos.results.length > 0 ? data.videos.results[0].key : null;
@@ -230,28 +231,17 @@ class Details extends React.Component {
                 <p className="bold">{movie.runtime} min</p>
               </div>
               <p className="details__overview">{movie.overview}</p>
-
-              <div className="actors-container">
-                {cast.map((actor) => (
-                  <CastDetails key={actor.id} onClick={() => history.push(`/person/${actor.id}`)} >
-                    <div className="profile-container">
-                      <img src={'https://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
-                    </div>
-                    <div className="profile-details">
-                      <p className="actor-name">{actor.name}</p>
-                      <p>as</p>
-                      <p className="actor-character">{actor.character}</p>
-                    </div>
-                  </CastDetails>
-                ))}
-
-              </div>
-
-
             </div>
-
-
           </DetailsDiv>
+
+          <ActorsContainer>
+            {cast.map((actor) => (
+              <CastSwiper key={actor.id} onClick={() => history.push(`/person/${actor.id}`)}>
+                <img src={'https://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
+              </CastSwiper>
+            ))}
+
+          </ActorsContainer>
 
           </FadeIn>
 

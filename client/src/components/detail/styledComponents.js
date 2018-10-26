@@ -37,20 +37,14 @@ export const DetailsDiv = styled.div`
   .details__release-info:nth-last-child(-n + 3) {
     color: #333;
   }
-  .actors-container {
-    margin-top: 2.5em;
-  }
-  `;
+`;
 
-export const CastDetails = styled.div`
+export const ActorsContainer = styled.div`
   display: flex;
-  overflow: hidden;
-  height: 100px;
+  flex-direction: row;
   width: 100%;
-  margin-bottom: 1em;
-  background: #fff;
-  box-shadow: 0 4px 6px rgba(50,50,93,.21),
-              0 1px 3px rgba(0,0,0,.18);
+  overflow: scroll;
+  margin-top: 2.5em;
 `;
 
 export const HeroPoster = styled.div`
