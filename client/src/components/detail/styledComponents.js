@@ -40,11 +40,31 @@ export const DetailsDiv = styled.div`
 `;
 
 export const ActorsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
   width: 100%;
-  overflow: scroll;
-  margin-top: 2.5em;
+  padding-bottom: 30px;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .actors-slider-container {
+    display: flex;
+    width: fit-content;
+    padding-right: 2.5%;
+    padding-left: 2.5%;
+  }
+  .actor-image-holder {
+    width: 80px;
+    min-width: 80px;
+    margin-right: 15px;
+    background-clip: padding-box;
+  }
+  .actor-image-holder img {
+    object-fit: contain;
+    max-width: 100%;
+    border-radius: 10px;
+    vertical-align: top;
+  }
 `;
 
 export const HeroPoster = styled.div`

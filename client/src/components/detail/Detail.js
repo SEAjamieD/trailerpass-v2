@@ -13,7 +13,6 @@ import './detail.css';
 
 import {
   DetailsDiv,
-  CastSwiper,
   HeroPoster,
   PlayButtonDiv,
   YoutubeWrapper,
@@ -235,12 +234,13 @@ class Details extends React.Component {
           </DetailsDiv>
 
           <ActorsContainer>
+            <div className="actors-slider-container">
             {cast.map((actor) => (
-              <CastSwiper key={actor.id} onClick={() => history.push(`/person/${actor.id}`)}>
+              <div className="actor-image-holder deep-box-shadow" key={actor.id} onClick={() => history.push(`/person/${actor.id}`)}>
                 <img src={'https://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
-              </CastSwiper>
+              </div>
             ))}
-
+            </div>
           </ActorsContainer>
 
           </FadeIn>
