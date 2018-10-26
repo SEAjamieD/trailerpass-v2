@@ -21,7 +21,7 @@ const DetailsDiv = styled.div`
   .details__lower-info {
     position: relative;
     width: 90%;
-    margin: 40px auto 0;
+    margin: 0 auto;
     min-height: 30vh;
     color: #333;
   }
@@ -31,7 +31,7 @@ const DetailsDiv = styled.div`
     text-transform: uppercase
     color: #333;
     text-align: center;
-    margin: 1em auto 0;
+    margin: 0 auto;
     padding: 12px 0;
   }
   .details__release-info {
@@ -129,6 +129,27 @@ const CloseDiv = styled.div`
     height: 4px;
     background: #fff;
     transform: rotate(-45deg);
+  }
+`;
+
+const PlusSign = styled.div`
+  position: relative;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  .p1 {
+    position: absolute;
+    width: 100%
+    height: 2px;
+    background: #333;
+    top: calc(50% - 1px);
+  }
+  .p2 {
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background: #333;
+    left: calc(50% - .5px);
   }
 `;
 
@@ -265,18 +286,25 @@ class Details extends React.Component {
           }
 
           <div className="url-copy-container">
+
+              <PlusSign>
+                <div className="p1"></div>
+                <div className="p2"></div>
+              </PlusSign>
+
+
               <CopyToClipboard
                 text={this.state.pageUrl}
                 onCopy={this.onCopy}
                 >
-                <button>
+                <button className="hidden-button">
                 <ShareIcon
-                  width='25px'
-                  fill='black'
+                  width='20px'
+                  fill='#333'
                   stroke='transparent'
                   style={shareStyle}
                   />
-              </button>
+                </button>
               </CopyToClipboard>
           </div>
 

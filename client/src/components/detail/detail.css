@@ -24,9 +24,16 @@
 .url-copy-container {
   display: flex;
   align-items: center;
-  margin-top: 1.5em;
-  margin-bottom: 2em;
-  border: 1px solid blue;
+  justify-content: space-between;
+  width: 80%;
+  margin: 15px auto 0;
+}
+
+.hidden-button {
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  outline: 0;
 }
 
 .url-copy-button {
