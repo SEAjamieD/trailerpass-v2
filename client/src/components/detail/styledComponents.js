@@ -41,6 +41,7 @@ export const DetailsDiv = styled.div`
 
 export const ActorsContainer = styled.div`
   width: 100%;
+  margin-top: .5em;
   padding-bottom: 30px;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
@@ -54,16 +55,25 @@ export const ActorsContainer = styled.div`
     padding-left: 2.5%;
   }
   .actor-image-holder {
+    position: relative;
     width: 80px;
     min-width: 80px;
-    margin-right: 15px;
-    background-clip: padding-box;
-  }
-  .actor-image-holder img {
-    object-fit: contain;
-    max-width: 100%;
+    height: auto;
+    min-height: 120px;
     border-radius: 10px;
-    vertical-align: top;
+    margin-right: 15px;
+    background: #7474bf;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    p {
+      position: absolute;
+      display: inline-block;
+      bottom: 5px;
+      left: 5px;
+      text-align: left;
+      color: #fff;
+    }
   }
 `;
 

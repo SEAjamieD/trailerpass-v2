@@ -5,7 +5,7 @@ const SelectedMoviesContainer = styled.div`
   position: relative;
 `;
 
-const FadeOverlay = styled.div`
+export const FadeOverlay = styled.div`
   position: absolute;
   z-index: 10;
   right: 0;

@@ -25,6 +25,8 @@ import {
   ActorsContainer
   } from './styledComponents';
 
+import { FadeOverlay } from '../selectedMovies/SelectedMovies';
+
 
 
 
@@ -233,15 +235,24 @@ class Details extends React.Component {
             </div>
           </DetailsDiv>
 
-          <ActorsContainer>
-            <div className="actors-slider-container">
-            {cast.map((actor) => (
-              <div className="actor-image-holder deep-box-shadow" key={actor.id} onClick={() => history.push(`/person/${actor.id}`)}>
-                <img src={'https://image.tmdb.org/t/p/w185/' + actor.profile_path} alt={actor.name}/>
+          { cast &&
+          <div style={{position: 'relative', marginTop: '2em'}}>
+            <FadeOverlay/>
+            <h3 className="text-shadow">Main Cast</h3>
+            <ActorsContainer>
+              <div className="actors-slider-container">
+              {cast.map((actor) => (
+                <div className="actor-image-holder deep-box-shadow"
+                  key={actor.id}
+                  onClick={() => history.push(`/person/${actor.id}`)}
+                  style={{backgroundImage:`url(https://image.tmdb.org/t/p/w185/${actor.profile_path})`}}>
+                  <p className="text-shadow">{actor.name}</p>
+                </div>
+              ))}
               </div>
-            ))}
-            </div>
-          </ActorsContainer>
+            </ActorsContainer>
+          </div>
+        }
 
           </FadeIn>
 

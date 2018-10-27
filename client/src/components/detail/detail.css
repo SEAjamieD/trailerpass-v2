@@ -1,3 +1,9 @@
+h3 {
+  display: inline-block;
+  margin-left: 2.5%;
+  font-size: 1em;
+  text-transform: uppercase;
+}
 
 .youtube-player {
   position: absolute;
