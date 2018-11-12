@@ -66,13 +66,18 @@ export const ActorsContainer = styled.div`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
     p {
       position: absolute;
       display: inline-block;
+      width: 90%;
+      min-height: 25%;
+      font-size: .875em;
       bottom: 5px;
       left: 5px;
-      text-align: left;
-      color: #fff;
+      padding-right: 5px;
+      text-align: right;
+      background: rgba(255,255,255,0.6);
     }
   }
 `;
