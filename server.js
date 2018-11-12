@@ -46,7 +46,7 @@ app.get('/api/trending-movies', (req, res) => {
 })
 
 app.get('/api/coming-soon-movies', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-${month}-${tomorrow}&primary_release_date.lte=${year}-${twoMonthsOut}-${tomorrow}`)
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-${month}-${tomorrow}&primary_release_date.lte=2019-${twoMonthsOut}-${tomorrow}`)
     .then(response => {
       return response.json()
     .then(json => {
@@ -113,7 +113,7 @@ app.get('/api/comedy-movies', (req, res) => {
 
 //kids
 app.get('/api/kids-movies', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=US&sort_by=popularity.desc&certification_country=US&certification.lte=G%2CPG%2CPG13&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-6-${tomorrow}&primary_release_date.lte=${year}-${twoMonthsOut}-${tomorrow}&with_genres=10751`)
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=US&sort_by=popularity.desc&certification_country=US&certification.lte=G%2CPG%2CPG13&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-6-${tomorrow}&primary_release_date.lte=2019-${twoMonthsOut}-${tomorrow}&with_genres=10751`)
     .then(response => {
       return response.json()
     .then(json => {
