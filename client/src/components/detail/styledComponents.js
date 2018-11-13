@@ -52,7 +52,7 @@ export const ActorsContainer = styled.div`
     display: flex;
     width: fit-content;
     padding-right: 2.5%;
-    padding-left: 2.5%;
+    padding-left: 10%;
   }
   .actor-image-holder {
     position: relative;

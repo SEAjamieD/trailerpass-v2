@@ -238,7 +238,7 @@ class Details extends React.Component {
           { cast &&
           <div style={{position: 'relative', marginTop: '2em'}}>
             <FadeOverlay/>
-            <h3 className="text-shadow-dark">Main Cast</h3>
+            <h3 className="text-shadow-dark" style={{marginLeft: '10%'}}>Main Cast</h3>
             <ActorsContainer>
               <div className="actors-slider-container">
               {cast.map((actor) => (
