@@ -63,7 +63,7 @@ app.get('/api/coming-soon-movies', (req, res) => {
 
 //action movies
 app.get('/api/action-movies', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018&with_genres=28%2C%2012`)
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=${year}&with_genres=28%2C%2012`)
     .then(response => {
       return response.json()
     .then(json => {
@@ -96,7 +96,7 @@ app.get('/api/in-theaters-movies', (req, res) => {
 
 //comedy
 app.get('/api/comedy-movies', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018&with_genres=35`)
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019&with_genres=35`)
     .then(response => {
       return response.json()
     .then(json => {
@@ -113,7 +113,7 @@ app.get('/api/comedy-movies', (req, res) => {
 
 //kids
 app.get('/api/kids-movies', (req, res) => {
-  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=US&sort_by=popularity.desc&certification_country=US&certification.lte=G%2CPG%2CPG13&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-6-${tomorrow}&primary_release_date.lte=2019-${twoMonthsOut}-${tomorrow}&with_genres=10751`)
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=US&sort_by=popularity.desc&certification_country=US&certification.lte=G%2CPG%2CPG13&include_adult=false&include_video=false&page=1&primary_release_date.gte=2018-9-${tomorrow}&primary_release_date.lte=2019-${twoMonthsOut}-${tomorrow}&with_genres=10751`)
     .then(response => {
       return response.json()
     .then(json => {
