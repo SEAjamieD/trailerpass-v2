@@ -47,7 +47,7 @@ app.get("/api/trending-movies", (req, res) => {
 
 app.get("/api/coming-soon-movies", (req, res) => {
   fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&region=us&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-${month}-${tomorrow}&primary_release_date.lte=2020-${twoMonthsOut}-${tomorrow}`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.OPENDB_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${year}-${month}-${tomorrow}&primary_release_date.lte=2020-03-31`
   )
     .then(response => {
       return response.json().then(json => {
